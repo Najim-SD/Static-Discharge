@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="Static Discharge"
+run/main_scene="res://Levels/Level 00.tscn"
 config/icon="res://icon.png"
 
 [physics]
