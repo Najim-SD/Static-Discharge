@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/FPS_Label.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0001.png" type="Texture" id=4]
+[ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0005.png" type="Texture" id=5]
+[ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0004.png" type="Texture" id=6]
+[ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0003.png" type="Texture" id=7]
+[ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0002.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "WhiteScreenFX",
+"speed": 24.0
+} ]
+
+[node name="MultiCam" type="Camera2D"]
+position = Vector2( 640, 360 )
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 4.0
+drag_margin_top = 0.1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="FPS" parent="HUD" instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -59.0
+margin_top = -20.0
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="AnimatedFX" type="AnimatedSprite" parent="HUD"]
+visible = false
+frames = SubResource( 1 )
+animation = "WhiteScreenFX"
+centered = false

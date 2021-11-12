@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Bot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=3]
 
 [node name="Level 00" type="Node2D"]
 
@@ -10,3 +12,17 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 32 )
 format = 1
 tile_data = PoolIntArray( -196604, 0, 0, -196603, 1, 0, -196602, 0, 0, -131069, 0, 0, -131068, 1, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -65533, 1, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, 1, 2, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 1, 0, 65542, 0, 0, 65543, 1, 0, 65544, 0, 0, 131075, 1, 0, 131077, 1, 0, 131078, 0, 0, 131079, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0 )
+
+[node name="Bot" parent="." instance=ExtResource( 2 )]
+position = Vector2( 160, 96 )
+
+[node name="MultiCam" parent="." instance=ExtResource( 3 )]
+zoom = Vector2( 0.7, 0.7 )
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+targets = [ "Cam Target" ]
+
+[node name="Cam Target" type="Position2D" parent="."]
+position = Vector2( 160, 96 )
