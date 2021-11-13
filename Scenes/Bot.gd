@@ -10,18 +10,25 @@ func _ready():
 
 
 func _process(delta):
+	if justPressed("discharge"):
+		$AnimationPlayer.stop(true)
+		$AnimationPlayer.play("EdgeLight_Red_Flash",-1, 2.0)
 	if justPressed("up"):
 		targetPos = moveVec(targetPos, "up")
 		$Body.animation = "up"
+		$Antenna.position = Vector2(7, -15)
 	elif justPressed("down"):
 		targetPos = moveVec(targetPos, "down")
 		$Body.animation = "down"
+		$Antenna.position = Vector2(-7, -22)
 	elif justPressed("right"):
 		targetPos = moveVec(targetPos, "right")
 		$Body.animation = "right"
+		$Antenna.position = Vector2(-7, -15)
 	elif justPressed("left"):
 		targetPos = moveVec(targetPos, "left")
 		$Body.animation = "left"
+		$Antenna.position = Vector2(7, -22)
 	
 	position = position.linear_interpolate(targetPos, 0.5)
 	
