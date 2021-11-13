@@ -11,22 +11,37 @@ func _ready():
 
 func _process(delta):
 	if justPressed("up"):
-		targetPos.x -= 32
-		targetPos.y -= 16
-	if justPressed("down"):
-		targetPos.x += 32
-		targetPos.y += 16
-	if justPressed("right"):
-		targetPos.x += 32
-		targetPos.y -= 16
-	if justPressed("left"):
-		targetPos.x -= 32
-		targetPos.y += 16
+		targetPos = moveVec(targetPos, "up")
+		$Body.animation = "up"
+	elif justPressed("down"):
+		targetPos = moveVec(targetPos, "down")
+		$Body.animation = "down"
+	elif justPressed("right"):
+		targetPos = moveVec(targetPos, "right")
+		$Body.animation = "right"
+	elif justPressed("left"):
+		targetPos = moveVec(targetPos, "left")
+		$Body.animation = "left"
 	
 	position = position.linear_interpolate(targetPos, 0.5)
 	
 	pass #_process()
 
+func moveVec(v, dir):
+	match dir:
+		"right" :
+			v.x += 32
+			v.y -= 16
+		"left" : 
+			v.x -= 32
+			v.y += 16
+		"up" :
+			v.x -= 32
+			v.y -= 16
+		"down" : 
+			v.x += 32
+			v.y += 16
+	return v
 
 func isPressed(key:String):
 	if Input.is_action_pressed(key):

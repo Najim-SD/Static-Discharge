@@ -1,20 +1,66 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Art/Bot/Bot Design.png" type="Texture" id=1]
+[ext_resource path="res://Art/Bot/Bot Right.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Bot.gd" type="Script" id=2]
+[ext_resource path="res://Art/Bot/Bot Up.png" type="Texture" id=3]
+[ext_resource path="res://Art/Bot/Bot Left.png" type="Texture" id=4]
+[ext_resource path="res://Art/Bot/Bot Edge Light.png" type="Texture" id=5]
+[ext_resource path="res://Art/Bot/Bot Down.png" type="Texture" id=6]
+[ext_resource path="res://Art/Bot/Bot Shadow.png" type="Texture" id=7]
+[ext_resource path="res://Art/Bot/Bot Antenna PH.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "default",
+"name": "right",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "left",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "up",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "down",
+"speed": 1.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "PH",
 "speed": 5.0
 } ]
 
 [node name="Bot" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 2.60615, -12.2506 )
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 2, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Body" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -5 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
+animation = "up"
+
+[node name="Edge Light" type="Sprite" parent="."]
+position = Vector2( 2, -4 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Antenna" type="AnimatedSprite" parent="."]
+position = Vector2( 2, -27 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+animation = "PH"

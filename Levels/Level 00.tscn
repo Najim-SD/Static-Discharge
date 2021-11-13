@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Bot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Game Manager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/WorldEnvironment.tres" type="Environment" id=5]
 
 [node name="Level 00" type="Node2D"]
+
+[node name="Game Manager" parent="." instance=ExtResource( 4 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 mode = 1
@@ -26,3 +30,6 @@ targets = [ "Cam Target" ]
 
 [node name="Cam Target" type="Position2D" parent="."]
 position = Vector2( 160, 96 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
