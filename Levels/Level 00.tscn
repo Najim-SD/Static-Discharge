@@ -1,24 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Resources/TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Bot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Game Manager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/WorldEnvironment.tres" type="Environment" id=5]
+[ext_resource path="res://Scenes/Tiles/Normal Tile.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Tiles/Static Tile.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Tiles/Goal Tile.tscn" type="PackedScene" id=8]
 
 [node name="Level 00" type="Node2D"]
 
 [node name="Game Manager" parent="." instance=ExtResource( 4 )]
-
-[node name="TileMap" type="TileMap" parent="."]
-mode = 1
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 64, 32 )
-format = 1
-tile_data = PoolIntArray( -196604, 0, 0, -196603, 1, 0, -196602, 0, 0, -131069, 0, 0, -131068, 1, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -65533, 1, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, 1, 2, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 1, 0, 65542, 0, 0, 65543, 1, 0, 65544, 0, 0, 131075, 1, 0, 131077, 1, 0, 131078, 0, 0, 131079, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0 )
-
-[node name="Bot" parent="." instance=ExtResource( 2 )]
-position = Vector2( 160, 96 )
 
 [node name="MultiCam" parent="." instance=ExtResource( 3 )]
 zoom = Vector2( 0.7, 0.7 )
@@ -29,7 +21,124 @@ drag_margin_bottom = 0.0
 targets = [ "Cam Target" ]
 
 [node name="Cam Target" type="Position2D" parent="."]
-position = Vector2( 160, 96 )
+position = Vector2( 256, 112 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Tiles" type="YSort" parent="YSort"]
+
+[node name="Goal Tile" parent="YSort/Tiles" instance=ExtResource( 8 )]
+position = Vector2( 128, 32 )
+
+[node name="Normal Tile" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 160, 48 )
+
+[node name="Normal Tile2" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 96, 112 )
+
+[node name="Normal Tile3" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 160, 80 )
+
+[node name="Normal Tile4" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 192, 64 )
+
+[node name="Normal Tile5" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 256, 32 )
+
+[node name="Normal Tile6" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 320, 32 )
+
+[node name="Normal Tile7" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 256, 64 )
+
+[node name="Normal Tile8" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 224, 80 )
+
+[node name="Normal Tile9" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 192, 96 )
+
+[node name="Normal Tile10" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 128, 128 )
+
+[node name="Normal Tile11" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 160, 144 )
+
+[node name="Normal Tile12" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 192, 160 )
+
+[node name="Normal Tile13" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 224, 144 )
+
+[node name="Normal Tile14" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 256, 128 )
+
+[node name="Normal Tile15" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 256, 96 )
+
+[node name="Normal Tile16" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 288, 80 )
+
+[node name="Normal Tile17" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 320, 64 )
+
+[node name="Normal Tile18" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 384, 64 )
+
+[node name="Normal Tile19" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 352, 80 )
+
+[node name="Normal Tile20" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 320, 96 )
+
+[node name="Normal Tile21" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 288, 112 )
+
+[node name="Normal Tile22" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 256, 160 )
+
+[node name="Normal Tile23" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 320, 128 )
+
+[node name="Normal Tile24" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 352, 112 )
+
+[node name="Normal Tile25" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 384, 96 )
+
+[node name="Normal Tile26" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 384, 128 )
+
+[node name="Normal Tile27" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 352, 144 )
+
+[node name="Normal Tile28" parent="YSort/Tiles" instance=ExtResource( 6 )]
+position = Vector2( 320, 160 )
+
+[node name="Static Tile" parent="YSort/Tiles" instance=ExtResource( 7 )]
+position = Vector2( 128, 96 )
+
+[node name="Static Tile2" parent="YSort/Tiles" instance=ExtResource( 7 )]
+position = Vector2( 224, 48 )
+
+[node name="Static Tile3" parent="YSort/Tiles" instance=ExtResource( 7 )]
+position = Vector2( 288, 48 )
+
+[node name="Static Tile4" parent="YSort/Tiles" instance=ExtResource( 7 )]
+position = Vector2( 352, 48 )
+
+[node name="Static Tile5" parent="YSort/Tiles" instance=ExtResource( 7 )]
+position = Vector2( 224, 112 )
+
+[node name="Static Tile6" parent="YSort/Tiles" instance=ExtResource( 7 )]
+position = Vector2( 192, 128 )
+
+[node name="Static Tile7" parent="YSort/Tiles" instance=ExtResource( 7 )]
+position = Vector2( 288, 144 )
+
+[node name="Objects" type="YSort" parent="YSort"]
+
+[node name="Bot" parent="YSort/Objects" instance=ExtResource( 2 )]
+position = Vector2( 256, 112 )

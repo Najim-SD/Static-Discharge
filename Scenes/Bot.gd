@@ -2,37 +2,63 @@ extends Node2D
 
 signal step
 var Hovering = false
-var targetPos = Vector2.ZERO
+
+var AntennaPos:Dictionary = {
+	"up":Vector2(12, -30),
+	"down":Vector2(-16, -44),
+	"left":Vector2(12, -44),
+	"right":Vector2(-16, -30)}
 
 func _ready():
-	targetPos = position
 	pass #_ready()
 
 
 func _process(delta):
 	if justPressed("discharge"):
-		$AnimationPlayer.stop(true)
-		$AnimationPlayer.play("EdgeLight_Red_Flash",-1, 2.0)
+		$Sprites/Antenna.frame = 0
+		$Sprites/Antenna.animation = "Charging"
+		BotError()
+		#$AnimationPlayer.stop(true)
+		#$AnimationPlayer.play("Move Up",-1, 1.0)
 	if justPressed("up"):
-		targetPos = moveVec(targetPos, "up")
-		$Body.animation = "up"
-		$Antenna.position = Vector2(7, -15)
+		moveBot("up")
 	elif justPressed("down"):
-		targetPos = moveVec(targetPos, "down")
-		$Body.animation = "down"
-		$Antenna.position = Vector2(-7, -22)
+		moveBot("down")
 	elif justPressed("right"):
-		targetPos = moveVec(targetPos, "right")
-		$Body.animation = "right"
-		$Antenna.position = Vector2(-7, -15)
+		moveBot("right")
 	elif justPressed("left"):
-		targetPos = moveVec(targetPos, "left")
-		$Body.animation = "left"
-		$Antenna.position = Vector2(7, -22)
+		moveBot("left")
 	
-	position = position.linear_interpolate(targetPos, 0.5)
 	
 	pass #_process()
+
+func BotError():
+	$AnimationPlayer.stop(true)
+	$AnimationPlayer.play("Bot_Error",-1, 2.0)
+
+func checkAndMove(v):
+	# Fire Ray and make sure there is a Tile in that place!
+	$Sprites.position -= (v - position)
+	position = v
+	#spt = v
+	return true
+
+func moveBot(dir):
+	$Sprites/Body.animation = dir
+	$Sprites/Antenna.position = AntennaPos[dir]
+	
+	$RayCast2D.cast_to = moveVec(Vector2.ZERO, dir)
+	$RayCast2D.force_raycast_update()
+	var collider:Area2D = $RayCast2D.get_collider()
+	if collider != null:
+		if collider.get_parent().is_in_group("Tiles"):
+			var nv:Vector2 = moveVec(position, dir)
+			$Sprites.position -= (nv - position)
+			position = nv
+			$AnimationPlayer.stop(true)
+			$AnimationPlayer.play("Move " + dir,-1, 3.0)
+	else :
+		BotError()
 
 func moveVec(v, dir):
 	match dir:
