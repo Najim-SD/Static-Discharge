@@ -142,3 +142,17 @@ position = Vector2( 288, 144 )
 
 [node name="Bot" parent="YSort/Objects" instance=ExtResource( 2 )]
 position = Vector2( 256, 112 )
+
+[node name="UI Layer" type="CanvasLayer" parent="."]
+
+[node name="Charge Level" type="Label" parent="UI Layer"]
+margin_left = 32.0
+margin_top = 5.0
+margin_right = 149.0
+margin_bottom = 19.0
+text = "Charge Level : 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="step" from="YSort/Objects/Bot" to="Game Manager" method="_on_Bot_step"]

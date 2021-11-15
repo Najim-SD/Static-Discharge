@@ -3,6 +3,9 @@ extends Node2D
 signal step
 var Hovering = false
 
+var chargeLevel:int = 0
+var currentTile
+
 var AntennaPos:Dictionary = {
 	"up":Vector2(12, -30),
 	"down":Vector2(-16, -44),
@@ -16,10 +19,8 @@ func _ready():
 func _process(delta):
 	if justPressed("discharge"):
 		$Sprites/Antenna.frame = 0
-		$Sprites/Antenna.animation = "Charging"
-		BotError()
-		#$AnimationPlayer.stop(true)
-		#$AnimationPlayer.play("Move Up",-1, 1.0)
+		$Sprites/Antenna.animation = "Discharging"
+		#BotError()
 	if justPressed("up"):
 		moveBot("up")
 	elif justPressed("down"):
@@ -36,13 +37,6 @@ func BotError():
 	$AnimationPlayer.stop(true)
 	$AnimationPlayer.play("Bot_Error",-1, 2.0)
 
-func checkAndMove(v):
-	# Fire Ray and make sure there is a Tile in that place!
-	$Sprites.position -= (v - position)
-	position = v
-	#spt = v
-	return true
-
 func moveBot(dir):
 	$Sprites/Body.animation = dir
 	$Sprites/Antenna.position = AntennaPos[dir]
@@ -51,12 +45,24 @@ func moveBot(dir):
 	$RayCast2D.force_raycast_update()
 	var collider:Area2D = $RayCast2D.get_collider()
 	if collider != null:
-		if collider.get_parent().is_in_group("Tiles"):
+		if collider.is_in_group("Tiles"):
 			var nv:Vector2 = moveVec(position, dir)
 			$Sprites.position -= (nv - position)
 			position = nv
 			$AnimationPlayer.stop(true)
 			$AnimationPlayer.play("Move " + dir,-1, 3.0)
+			
+			# What kind of Tile?
+			if collider.is_in_group("StaticTiles"):
+				chargeLevel += 1
+			elif collider.is_in_group("NormalTiles"):
+				if chargeLevel > 0:
+					chargeLevel -= 1
+				else:
+					pass # Dust
+			
+			# STEP
+			emit_signal("step")
 	else :
 		BotError()
 
@@ -90,3 +96,18 @@ func justReleased(key:String):
 	if Input.is_action_just_released(key):
 		return true
 	else : return false
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("Tiles"):
+		currentTile = area.get_parent()
+		area.get_parent().find_node("Highlight FX").modulate.a = 1.0
+		#area.get_parent().find_node("Highlight FX").show()
+	pass # Replace with function body.
+
+
+func _on_Area2D_area_exited(area):
+	if area.is_in_group("Tiles"):
+		area.get_parent().find_node("Highlight FX").modulate.a = 0.0
+		#area.get_parent().find_node("Highlight FX").hide()
+	pass # Replace with function body.
