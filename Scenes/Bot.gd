@@ -37,7 +37,7 @@ func staticDischarge():
 	$Sprites/Antenna.frame = 0
 	$Sprites/Antenna.play("Discharging")
 	
-	sparksOnTile(currentTile, 1.0)
+	sparksOnTile(currentTile, 1.0, 0.1)
 	var areas = $RingArea.get_overlapping_areas()
 	for ar in areas:
 		if ar.is_in_group("Tiles"):
@@ -48,10 +48,9 @@ func staticDischarge():
 				l -= 1
 				l = chargeLevel - l
 				var ap:float = l / chargeLevel
-				prints("l", l, "  ap", ap)
 				ap = max(ap, 0.1)
-				ap = min(1.0, ap)
-				sparksOnTile(tile, ap)
+				ap = min(0.95, ap)
+				sparksOnTile(tile, ap, (1.0-ap) * 1.0) # Span of 2 Seconds
 	
 	chargeLevel = 0
 	$RingArea.scale = Vector2.ONE
@@ -82,13 +81,13 @@ func moveBot(dir):
 				chargeLevel += 1
 				$Sprites/Antenna.frame = 0
 				$Sprites/Antenna.play("Charging")
-				sparksOnTile(collider.get_parent(), 1.0)
+				sparksOnTile(collider.get_parent(), 1.0, 0.1)
 			elif collider.is_in_group("NormalTiles"):
 				if chargeLevel > 0:
 					chargeLevel -= 1
 					$Sprites/Antenna.frame = 0
 					$Sprites/Antenna.play("Discharging")
-					sparksOnTile(collider.get_parent(), 1.0)
+					sparksOnTile(collider.get_parent(), 1.0, 0.1)
 				else:
 					pass # Dust
 			if chargeLevel > 0 :
@@ -131,11 +130,9 @@ func justReleased(key:String):
 		return true
 	else : return false
 
-func sparksOnTile(tile, alpha):
-	var rs = int(rand_range(0.0,3.0)) + 1
+func sparksOnTile(tile, alpha, waitTime):
 	tile.find_node("FX").modulate.a = alpha
-	tile.find_node("FX").frame = 0
-	tile.find_node("FX").play("Sparks " + str(rs))
+	tile.find_node("FXTimer").start(waitTime)
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Tiles"):
