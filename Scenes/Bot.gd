@@ -57,11 +57,13 @@ func moveBot(dir):
 				chargeLevel += 1
 				$Sprites/Antenna.frame = 0
 				$Sprites/Antenna.play("Charging")
+				sparksOnTile(collider.get_parent())
 			elif collider.is_in_group("NormalTiles"):
 				if chargeLevel > 0:
 					chargeLevel -= 1
 					$Sprites/Antenna.frame = 0
 					$Sprites/Antenna.play("Discharging")
+					sparksOnTile(collider.get_parent())
 				else:
 					pass # Dust
 			if chargeLevel > 0 :
@@ -103,20 +105,23 @@ func justReleased(key:String):
 		return true
 	else : return false
 
+func sparksOnTile(tile):
+	var rs = int(rand_range(0.0,3.0)) + 1
+	tile.find_node("FX").frame = 0
+	tile.find_node("FX").play("Sparks " + str(rs))
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Tiles"):
 		currentTile = area.get_parent()
-		area.get_parent().find_node("Highlight FX").modulate.a = 1.0
-		#area.get_parent().find_node("Highlight FX").show()
-	pass # Replace with function body.
+		#area.get_parent().find_node("Highlight FX").modulate.a = 0.4
+	pass #
 
 
 func _on_Area2D_area_exited(area):
 	if area.is_in_group("Tiles"):
-		area.get_parent().find_node("Highlight FX").modulate.a = 0.0
-		#area.get_parent().find_node("Highlight FX").hide()
-	pass # Replace with function body.
+		#area.get_parent().find_node("Highlight FX").modulate.a = 0.0
+		pass
+	pass
 
 
 func _on_Antenna_animation_finished():
@@ -126,4 +131,4 @@ func _on_Antenna_animation_finished():
 				$Sprites/Antenna.play("Charged")
 			else:
 				$Sprites/Antenna.play("Empty")
-	pass # Replace with function body.
+	pass #
