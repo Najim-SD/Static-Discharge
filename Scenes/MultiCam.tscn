@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://Art/FX/ScreenFX.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/FPS_Label.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0001.png" type="Texture" id=4]
 [ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0005.png" type="Texture" id=5]
@@ -42,6 +43,18 @@ margin_bottom = 0.0
 
 [node name="AnimatedFX" type="AnimatedSprite" parent="HUD"]
 visible = false
+modulate = Color( 0.65098, 0.839216, 1, 0.431373 )
 frames = SubResource( 1 )
 animation = "WhiteScreenFX"
+frame = 4
+playing = true
 centered = false
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+modulate = Color( 1, 1, 1, 0.509804 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

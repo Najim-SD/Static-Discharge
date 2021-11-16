@@ -55,12 +55,18 @@ func moveBot(dir):
 			# What kind of Tile?
 			if collider.is_in_group("StaticTiles"):
 				chargeLevel += 1
+				$Sprites/Antenna.frame = 0
+				$Sprites/Antenna.play("Charging")
 			elif collider.is_in_group("NormalTiles"):
 				if chargeLevel > 0:
 					chargeLevel -= 1
+					$Sprites/Antenna.frame = 0
+					$Sprites/Antenna.play("Discharging")
 				else:
 					pass # Dust
-			
+			if chargeLevel > 0 :
+				$"Sprites/Edge Light".show()
+			else : $"Sprites/Edge Light".hide()
 			# STEP
 			emit_signal("step")
 	else :
@@ -110,4 +116,14 @@ func _on_Area2D_area_exited(area):
 	if area.is_in_group("Tiles"):
 		area.get_parent().find_node("Highlight FX").modulate.a = 0.0
 		#area.get_parent().find_node("Highlight FX").hide()
+	pass # Replace with function body.
+
+
+func _on_Antenna_animation_finished():
+	match $Sprites/Antenna.animation:
+		"Discharging":
+			if chargeLevel > 0:
+				$Sprites/Antenna.play("Charged")
+			else:
+				$Sprites/Antenna.play("Empty")
 	pass # Replace with function body.
