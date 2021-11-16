@@ -63,7 +63,7 @@ playing = true
 
 [node name="Highlight FX" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.909804, 1, 0.690196, 0 )
-frame = 25
+frame = 12
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "NormalTiles",

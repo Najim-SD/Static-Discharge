@@ -249,7 +249,9 @@ frames = SubResource( 7 )
 animation = "Empty"
 playing = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=[
+"Player",
+]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
@@ -262,6 +264,14 @@ enabled = true
 cast_to = Vector2( -32, -16 )
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="RingArea" type="Area2D" parent="."]
+visible = false
+monitorable = false
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RingArea"]
+polygon = PoolVector2Array( 0, -16, -32, 0, 0, 16, 32, 0 )
 
 [connection signal="animation_finished" from="Sprites/Antenna" to="." method="_on_Antenna_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

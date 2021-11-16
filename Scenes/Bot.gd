@@ -17,10 +17,6 @@ func _ready():
 
 
 func _process(delta):
-	if justPressed("discharge"):
-		$Sprites/Antenna.frame = 0
-		$Sprites/Antenna.animation = "Discharging"
-		#BotError()
 	if justPressed("up"):
 		moveBot("up")
 	elif justPressed("down"):
@@ -30,8 +26,37 @@ func _process(delta):
 	elif justPressed("left"):
 		moveBot("left")
 	
-	
+	elif justPressed("discharge"):
+		if chargeLevel > 0:
+			staticDischarge()
+		else:
+			BotError()
 	pass #_process()
+
+func staticDischarge():
+	$Sprites/Antenna.frame = 0
+	$Sprites/Antenna.play("Discharging")
+	
+	sparksOnTile(currentTile, 1.0)
+	var areas = $RingArea.get_overlapping_areas()
+	for ar in areas:
+		if ar.is_in_group("Tiles"):
+			var tile = ar.get_parent()
+			if tile.name != currentTile.name :
+				var l = abs(tile.position.y - currentTile.position.y) + ((abs(tile.position.x - currentTile.position.x))/2)
+				l /= 32
+				l -= 1
+				l = chargeLevel - l
+				var ap:float = l / chargeLevel
+				prints("l", l, "  ap", ap)
+				ap = max(ap, 0.1)
+				ap = min(1.0, ap)
+				sparksOnTile(tile, ap)
+	
+	chargeLevel = 0
+	$RingArea.scale = Vector2.ONE
+	$"Sprites/Edge Light".hide()
+	emit_signal("step")
 
 func BotError():
 	$AnimationPlayer.stop(true)
@@ -57,17 +82,18 @@ func moveBot(dir):
 				chargeLevel += 1
 				$Sprites/Antenna.frame = 0
 				$Sprites/Antenna.play("Charging")
-				sparksOnTile(collider.get_parent())
+				sparksOnTile(collider.get_parent(), 1.0)
 			elif collider.is_in_group("NormalTiles"):
 				if chargeLevel > 0:
 					chargeLevel -= 1
 					$Sprites/Antenna.frame = 0
 					$Sprites/Antenna.play("Discharging")
-					sparksOnTile(collider.get_parent())
+					sparksOnTile(collider.get_parent(), 1.0)
 				else:
 					pass # Dust
 			if chargeLevel > 0 :
 				$"Sprites/Edge Light".show()
+				$RingArea.scale = Vector2(chargeLevel*2 +1, chargeLevel*2 +1)
 			else : $"Sprites/Edge Light".hide()
 			# STEP
 			emit_signal("step")
@@ -105,8 +131,9 @@ func justReleased(key:String):
 		return true
 	else : return false
 
-func sparksOnTile(tile):
+func sparksOnTile(tile, alpha):
 	var rs = int(rand_range(0.0,3.0)) + 1
+	tile.find_node("FX").modulate.a = alpha
 	tile.find_node("FX").frame = 0
 	tile.find_node("FX").play("Sparks " + str(rs))
 
