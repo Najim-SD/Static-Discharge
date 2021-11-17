@@ -50,12 +50,14 @@ func staticDischarge():
 				var ap:float = l / chargeLevel
 				ap = max(ap, 0.1)
 				ap = min(0.95, ap)
-				sparksOnTile(tile, ap, (1.0-ap) * 1.0) # Span of 2 Seconds
+				sparksOnTile(tile, ap, (1.0-ap) * 1.2) # Span of 2 Seconds
 	
 	chargeLevel = 0
 	$RingArea.scale = Vector2.ONE
 	$"Sprites/Edge Light".hide()
 	emit_signal("step")
+	
+	pass # END StaticDischarge()
 
 func BotError():
 	$AnimationPlayer.stop(true)

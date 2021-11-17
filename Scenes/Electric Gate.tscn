@@ -1,0 +1,57 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Art/Electric Gate/Lowered/2.png" type="Texture" id=1]
+[ext_resource path="res://Art/Electric Gate/Lowered/3.png" type="Texture" id=2]
+[ext_resource path="res://Art/Electric Gate/Lowered/5.png" type="Texture" id=3]
+[ext_resource path="res://Art/Electric Gate/Lowered/6.png" type="Texture" id=4]
+[ext_resource path="res://Art/Electric Gate/Disrupted/1.png" type="Texture" id=5]
+[ext_resource path="res://Art/Electric Gate/Disrupted/2.png" type="Texture" id=6]
+[ext_resource path="res://Art/Electric Gate/Lowered/1.png" type="Texture" id=7]
+[ext_resource path="res://Art/Electric Gate/Disrupted/6.png" type="Texture" id=8]
+[ext_resource path="res://Art/Electric Gate/Disrupted/5.png" type="Texture" id=9]
+[ext_resource path="res://Art/Electric Gate/Disrupted/7.png" type="Texture" id=10]
+[ext_resource path="res://Art/Electric Gate/Lowered/7.png" type="Texture" id=11]
+[ext_resource path="res://Art/Electric Gate/Lowered/4.png" type="Texture" id=12]
+[ext_resource path="res://Art/Electric Gate/Disrupted/3.png" type="Texture" id=13]
+[ext_resource path="res://Art/Electric Gate/Disrupted/4.png" type="Texture" id=14]
+[ext_resource path="res://Art/Electric Gate/Raised/1.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/Electric Gate.gd" type="Script" id=16]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 12 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "Lowered",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "Raised",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "Disrupted",
+"speed": 18.0
+} ]
+
+[node name="Electric Gate" type="Node2D" groups=[
+"Gates",
+"Objects",
+]]
+script = ExtResource( 16 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "Raised"
+playing = true
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"Gates",
+"Objects",
+]]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 26.6631, 14.9335, -2.00008, 29.2651, -6.33106, 27.2177, 21.7022, 13.5161 )
