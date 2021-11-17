@@ -54,4 +54,8 @@ playing = true
 collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
 polygon = PoolVector2Array( 26.6631, 14.9335, -2.00008, 29.2651, -6.33106, 27.2177, 21.7022, 13.5161 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

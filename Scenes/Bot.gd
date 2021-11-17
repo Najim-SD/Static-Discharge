@@ -50,7 +50,7 @@ func staticDischarge():
 				var ap:float = l / chargeLevel
 				ap = max(ap, 0.1)
 				ap = min(0.95, ap)
-				sparksOnTile(tile, ap, (1.0-ap) * 1.2) # Span of 2 Seconds
+				sparksOnTile(tile, ap, (1.0-ap) * 1.2, l) # Span of 2 Seconds
 	
 	chargeLevel = 0
 	$RingArea.scale = Vector2.ONE
@@ -72,6 +72,14 @@ func moveBot(dir):
 	var collider:Area2D = $RayCast2D.get_collider()
 	if collider != null:
 		if collider.is_in_group("Tiles"):
+			var tile = collider.get_parent()
+			if tile.occupied:
+				var obj = tile.occupier
+				if obj.is_in_group("Gates") and obj.find_node("AnimatedSprite").animation != "Lowered":
+					BotError()
+					return
+				elif obj.is_in_group("Towers"):
+					pass
 			var nv:Vector2 = moveVec(position, dir)
 			$Sprites.position -= (nv - position)
 			position = nv
@@ -100,6 +108,7 @@ func moveBot(dir):
 			emit_signal("step")
 	else :
 		BotError()
+
 
 func moveVec(v, dir):
 	match dir:
@@ -132,7 +141,8 @@ func justReleased(key:String):
 		return true
 	else : return false
 
-func sparksOnTile(tile, alpha, waitTime):
+func sparksOnTile(tile, alpha, waitTime, level = 0):
+	tile.chargeLevel = level
 	tile.find_node("FX").modulate.a = alpha
 	tile.find_node("FXTimer").start(waitTime)
 

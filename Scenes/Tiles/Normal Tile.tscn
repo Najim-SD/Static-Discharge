@@ -65,7 +65,7 @@ playing = true
 
 [node name="Highlight FX" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.909804, 1, 0.690196, 0 )
-frame = 4
+frame = 1
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "NormalTiles",
@@ -73,6 +73,7 @@ frame = 4
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2( 0, 15 )
 shape = SubResource( 2 )
 

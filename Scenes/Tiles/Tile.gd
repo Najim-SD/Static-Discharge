@@ -1,13 +1,18 @@
 extends Node2D
 
+var occupied = false
+var occupier
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var chargeLevel:int = 1
+
 func startSparks():
 	var rs = int(rand_range(0.0,3.0)) + 1
 	$FX.frame = 0
 	$FX.play("Sparks " + str(rs))
+	
+	# pass to object on top
+	if occupied:
+		occupier.shock(chargeLevel)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
