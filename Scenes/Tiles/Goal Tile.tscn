@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Art/Tiles/Goal Tile.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Tiles/Highlight FX.tscn" type="PackedScene" id=2]
@@ -24,8 +24,39 @@
 [ext_resource path="res://Art/Tiles/FX/Blue Sparks/Discharge Sparks 3/4.png" type="Texture" id=22]
 [ext_resource path="res://Art/Tiles/FX/Blue Sparks/Discharge Sparks 3/7.png" type="Texture" id=23]
 [ext_resource path="res://Scenes/Tiles/Tile.gd" type="Script" id=24]
+[ext_resource path="res://Art/UI/Font/Xolonium-Regular.ttf" type="DynamicFontData" id=25]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="Animation" id=1]
+resource_name = "Opacity"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.420448, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.219608 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.694118 ), Color( 1, 1, 1, 0.207843 ), Color( 1, 1, 1, 0.796078 ), Color( 1, 1, 1, 0.105882 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.67451 ), Color( 1, 1, 1, 0.6 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Quake"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.9, 1 ),
+"transitions": PoolRealArray( 0.392292, 3.36359, 1.10957, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 5 ), Vector2( 0, -2 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 20 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 21 ) ],
 "loop": false,
@@ -43,7 +74,50 @@ animations = [ {
 "speed": 16.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="DynamicFont" id=4]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 25 )
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ 12, 16 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.901251, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.733333 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label:margin_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1.41421, 1 ),
+"update": 0,
+"values": [ 8.0, -2 ]
+}
+
+[sub_resource type="CircleShape2D" id=6]
 radius = 12.0
 
 [node name="Goal Tile" type="Node2D" groups=[
@@ -52,20 +126,44 @@ radius = 12.0
 ]]
 script = ExtResource( 24 )
 
-[node name="Base" type="Sprite" parent="."]
+[node name="TilePlayer" type="AnimationPlayer" parent="."]
+anims/Opacity = SubResource( 1 )
+anims/Quake = SubResource( 2 )
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Base" type="Sprite" parent="Sprites"]
 position = Vector2( 0, 32 )
 texture = ExtResource( 1 )
 
-[node name="FX" type="AnimatedSprite" parent="."]
+[node name="FX" type="AnimatedSprite" parent="Sprites"]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 1 )
+frames = SubResource( 3 )
 animation = "Sparks 1"
 frame = 7
 playing = true
 
-[node name="Highlight FX" parent="." instance=ExtResource( 2 )]
+[node name="Highlight FX" parent="Sprites" instance=ExtResource( 2 )]
 modulate = Color( 0.909804, 1, 0.690196, 0 )
-frame = 15
+frame = 25
+
+[node name="Label" type="Label" parent="Sprites"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -15.0
+margin_top = -10.0
+margin_right = 15.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 4 )
+text = "27"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
+anims/Label_Animation = SubResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "GoalTiles",
@@ -75,7 +173,7 @@ frame = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 position = Vector2( 0, 15 )
-shape = SubResource( 2 )
+shape = SubResource( 6 )
 
 [node name="FXTimer" type="Timer" parent="."]
 wait_time = 0.15

@@ -13,6 +13,8 @@ func shock(chargeLevel):
 		elif chargeLevel > 4:
 			$AnimatedSprite.frame = 0
 			$AnimatedSprite.play("Disrupted")
+			$AnimationPlayer.stop(true)
+			$AnimationPlayer.play("OverCharged",-1, 2.5)
 	pass
 
 func _on_Area2D_area_entered(area):

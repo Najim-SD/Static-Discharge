@@ -5,10 +5,22 @@ var occupier
 
 var chargeLevel:int = 1
 
+func animateLabel():
+	$Sprites/AnimationPlayer.stop(true)
+	$Sprites/AnimationPlayer.play("Label_Animation")
+
+func quake():
+	$TilePlayer.stop(true)
+	$TilePlayer.play("Quake",-1, 1.5)
+
 func startSparks():
 	var rs = int(rand_range(0.0,3.0)) + 1
-	$FX.frame = 0
-	$FX.play("Sparks " + str(rs))
+	$Sprites/FX.frame = 0
+	$Sprites/FX.play("Sparks " + str(rs))
+	
+	if chargeLevel > 0: 
+		animateLabel()
+		#quake()
 	
 	# pass to object on top
 	if occupied:
@@ -16,6 +28,8 @@ func startSparks():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$TilePlayer.stop(true)
+	$TilePlayer.play("Opacity")
 	pass # Replace with function body.
 
 

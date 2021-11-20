@@ -166,14 +166,14 @@ tracks/1/keys = {
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "left",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "right",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "left",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -189,15 +189,15 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 28 ) ],
-"loop": true,
-"name": "Empty",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 20 ) ],
 "loop": false,
 "name": "Charging",
 "speed": 18.0
+}, {
+"frames": [ ExtResource( 28 ) ],
+"loop": true,
+"name": "Empty",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 23 ) ],
 "loop": false,
@@ -226,6 +226,7 @@ anims/Bot_Error = SubResource( 1 )
 "anims/Move up" = SubResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="."]
+position = Vector2( 5, 2 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Shadow" type="Sprite" parent="Sprites"]

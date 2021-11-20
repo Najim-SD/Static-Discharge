@@ -1,6 +1,7 @@
 extends Node2D
 
 signal step
+signal reachedGoal
 var Hovering = false
 
 var chargeLevel:int = 0
@@ -142,20 +143,24 @@ func justReleased(key:String):
 	else : return false
 
 func sparksOnTile(tile, alpha, waitTime, level = 0):
+	if level: tile.find_node("Sprites").find_node("Label").text = str(level)
 	tile.chargeLevel = level
-	tile.find_node("FX").modulate.a = alpha
+	tile.find_node("Sprites").find_node("FX").modulate.a = alpha
 	tile.find_node("FXTimer").start(waitTime)
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Tiles"):
 		currentTile = area.get_parent()
-		#area.get_parent().find_node("Highlight FX").modulate.a = 0.4
+		if area.is_in_group("GoalTiles"):
+			emit_signal("reachedGoal")
+			pass
+		#area.get_parent().find_node("Sprites/Highlight FX").modulate.a = 0.4
 	pass #
 
 
 func _on_Area2D_area_exited(area):
 	if area.is_in_group("Tiles"):
-		#area.get_parent().find_node("Highlight FX").modulate.a = 0.0
+		#area.get_parent().find_node("Sprites/Highlight FX").modulate.a = 0.0
 		pass
 	pass
 

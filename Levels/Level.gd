@@ -1,13 +1,17 @@
 extends Node2D
 
+export var levelName:String
+export var levelNumber:String
+export var nextLevelPath:String
+
 var UI_Ref:CanvasLayer
 var Bot_Ref
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	UI_Ref = get_parent().find_node("Gameplay HUD")
-	Bot_Ref = get_parent().find_node("YSort").find_node("Objects").find_node("Bot")
-	UI_Ref.find_node("Title").text = 
+	UI_Ref = $"Gameplay HUD"
+	Bot_Ref = $YSort/Objects/Bot
+	UI_Ref.find_node("Title").text = "#" + levelNumber + " - " + levelName
 	pass # Replace with function body.
 
 func set_CL_Label(level:int):

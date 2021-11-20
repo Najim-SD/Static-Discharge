@@ -1,19 +1,28 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Electric Gate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Bot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Game Manager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/WorldEnvironment.tres" type="Environment" id=5]
 [ext_resource path="res://Scenes/Tiles/Normal Tile.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Tiles/Static Tile.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Tiles/Goal Tile.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Art/UI/Screen.png" type="Texture" id=9]
+[ext_resource path="res://Art/UI/Font/Xolonium-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=11]
+[ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=12]
+[ext_resource path="res://Art/UI/S.png" type="Texture" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 10 )
 
 [node name="Level 00" type="Node2D"]
-
-[node name="Game Manager" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 11 )
+levelName = "Static Discharge"
+levelNumber = "00"
 
 [node name="MultiCam" parent="." instance=ExtResource( 3 )]
+position = Vector2( 256, 220 )
 zoom = Vector2( 0.7, 0.7 )
 drag_margin_left = 0.0
 drag_margin_top = 0.0
@@ -142,21 +151,70 @@ position = Vector2( 288, 144 )
 [node name="Objects" type="YSort" parent="YSort"]
 
 [node name="Bot" parent="YSort/Objects" instance=ExtResource( 2 )]
-position = Vector2( 256, 112 )
+position = Vector2( 352, 128 )
 
 [node name="Electric Gate" parent="YSort/Objects" instance=ExtResource( 1 )]
 position = Vector2( 160, 48 )
 
-[node name="UI Layer" type="CanvasLayer" parent="."]
+[node name="Gameplay HUD" type="CanvasLayer" parent="."]
 
-[node name="Charge Level" type="Label" parent="UI Layer"]
-margin_left = 32.0
-margin_top = 5.0
-margin_right = 149.0
-margin_bottom = 19.0
-text = "Charge Level : 0"
+[node name="Upper Frame" type="TextureRect" parent="Gameplay HUD"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_right = 1.0
+margin_bottom = 40.0
+texture = ExtResource( 9 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="step" from="YSort/Objects/Bot" to="Game Manager" method="_on_Bot_step"]
+[node name="Lower Frame" type="TextureRect" parent="Gameplay HUD"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+texture = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Charge Level" type="Label" parent="Gameplay HUD"]
+margin_left = 44.0
+margin_top = 7.0
+margin_right = 73.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.584314, 0.690196, 1, 1 )
+text = ": 0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Gameplay HUD"]
+margin_left = 368.0
+margin_top = 7.0
+margin_right = 594.0
+margin_bottom = 27.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.741176, 0.584314, 1 )
+text = "Level Title"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S" type="TextureRect" parent="Gameplay HUD"]
+margin_left = 10.9602
+margin_right = 50.9602
+margin_bottom = 41.0
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="reachedGoal" from="YSort/Objects/Bot" to="." method="_on_Bot_reachedGoal"]
+[connection signal="step" from="YSort/Objects/Bot" to="." method="_on_Bot_step"]
