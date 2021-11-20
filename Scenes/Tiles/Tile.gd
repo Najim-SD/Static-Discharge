@@ -28,8 +28,9 @@ func startSparks():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var r = int(rand_range(0.0,3.0))
 	$TilePlayer.stop(true)
-	$TilePlayer.play("Opacity")
+	$TilePlayer.play("Opacity " + str(r),-1, rand_range(1.0, 1.5))
 	pass # Replace with function body.
 
 

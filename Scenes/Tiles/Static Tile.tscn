@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Art/Tiles/Static Tile.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Tiles/Highlight FX.tscn" type="PackedScene" id=2]
@@ -26,7 +26,7 @@
 [ext_resource path="res://Scenes/Tiles/Tile.gd" type="Script" id=24]
 [ext_resource path="res://Art/UI/Font/Xolonium-Regular.ttf" type="DynamicFontData" id=25]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=8]
 resource_name = "Opacity 0"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -37,11 +37,11 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.420448, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.219608 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.694118 ), Color( 1, 1, 1, 0.207843 ), Color( 1, 1, 1, 0.796078 ), Color( 1, 1, 1, 0.105882 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.67451 ), Color( 1, 1, 1, 0.6 ), Color( 1, 1, 1, 1 ) ]
+"update": 1,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.219608 ), Color( 1, 1, 1, 0.117647 ), Color( 1, 1, 1, 0.694118 ), Color( 1, 1, 1, 0.301961 ), Color( 1, 1, 1, 0.796078 ), Color( 1, 1, 1, 0.247059 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.67451 ), Color( 1, 1, 1, 0.6 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=9]
 resource_name = "Opacity 1"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -52,11 +52,25 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.420448, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0.121569 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.313726 ), Color( 1, 1, 1, 0.12549 ), Color( 1, 1, 1, 0.513726 ), Color( 1, 1, 1, 0.305882 ), Color( 1, 1, 1, 0.0235294 ), Color( 1, 1, 1, 0.513726 ), Color( 1, 1, 1, 0.913725 ), Color( 1, 1, 1, 0.439216 ), Color( 1, 1, 1, 1 ) ]
+"update": 1,
+"values": [ Color( 1, 1, 1, 0.121569 ), Color( 1, 1, 1, 0.0745098 ), Color( 1, 1, 1, 0.313726 ), Color( 1, 1, 1, 0.168627 ), Color( 1, 1, 1, 0.513726 ), Color( 1, 1, 1, 0.305882 ), Color( 1, 1, 1, 0.156863 ), Color( 1, 1, 1, 0.513726 ), Color( 1, 1, 1, 0.913725 ), Color( 1, 1, 1, 0.439216 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1.1487, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0.168627 ), Color( 1, 1, 1, 0.0941176 ), Color( 1, 1, 1, 0.380392 ), Color( 1, 1, 1, 0.14902 ), Color( 1, 1, 1, 0.545098 ), Color( 1, 1, 1, 0.254902 ), Color( 1, 1, 1, 0.290196 ), Color( 1, 1, 1, 0.831373 ), Color( 1, 1, 1, 0.572549 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
 resource_name = "Quake"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites:position")
@@ -71,7 +85,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 5 ), Vector2( 0, -2 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 20 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 21 ) ],
 "loop": false,
@@ -94,7 +108,7 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 25 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=13]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:custom_fonts/font:size")
 tracks/0/interp = 1
@@ -142,9 +156,10 @@ radius = 12.0
 script = ExtResource( 24 )
 
 [node name="TilePlayer" type="AnimationPlayer" parent="."]
-"anims/Opacity 0" = SubResource( 1 )
-"anims/Opacity 1" = SubResource( 2 )
-anims/Quake = SubResource( 3 )
+"anims/Opacity 0" = SubResource( 8 )
+"anims/Opacity 1" = SubResource( 9 )
+"anims/Opacity 2" = SubResource( 10 )
+anims/Quake = SubResource( 11 )
 
 [node name="Sprites" type="Node2D" parent="."]
 
@@ -154,14 +169,14 @@ texture = ExtResource( 1 )
 
 [node name="FX" type="AnimatedSprite" parent="Sprites"]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 4 )
+frames = SubResource( 12 )
 animation = "Sparks 1"
 frame = 7
 playing = true
 
 [node name="Highlight FX" parent="Sprites" instance=ExtResource( 2 )]
 modulate = Color( 0.909804, 1, 0.690196, 0 )
-frame = 3
+frame = 10
 
 [node name="Label" type="Label" parent="Sprites"]
 modulate = Color( 1, 1, 1, 0 )
@@ -179,7 +194,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
-anims/Label_Animation = SubResource( 6 )
+anims/Label_Animation = SubResource( 13 )
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "StaticTiles",
