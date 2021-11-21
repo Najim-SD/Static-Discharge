@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Electric Gate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Bot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/FX/BlackScreen.png" type="Texture" id=4]
 [ext_resource path="res://Resources/WorldEnvironment.tres" type="Environment" id=5]
 [ext_resource path="res://Scenes/Tiles/Normal Tile.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Tiles/Static Tile.tscn" type="PackedScene" id=7]
@@ -12,8 +13,155 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=11]
 [ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=12]
 [ext_resource path="res://Art/UI/S.png" type="Texture" id=13]
+[ext_resource path="res://Resources/glitch_effect.shader" type="Shader" id=14]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="Animation" id=3]
+resource_name = "LevelIntro"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Glitch:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Title:percent_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1.5, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Upper Frame:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.2, 1 ),
+"update": 0,
+"values": [ 250.0, 40.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Lower Frame:margin_top")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.2, 1 ),
+"update": 0,
+"values": [ -250.0, -40.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Upper Frame:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.666667 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Lower Frame:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.666667 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "LevelOutro"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Upper Frame:margin_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ 40.0, 250.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lower Frame:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ -40.0, -250.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Upper Frame:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Lower Frame:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 14 )
+shader_param/shake_power = 0.03
+shader_param/shake_rate = 1.0
+shader_param/shake_speed = 5.0
+shader_param/shake_block_size = 30.5
+shader_param/shake_color_rate = 0.01
+
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 10 )
 
 [node name="Level 00" type="Node2D"]
@@ -158,9 +306,26 @@ position = Vector2( 160, 48 )
 
 [node name="Gameplay HUD" type="CanvasLayer" parent="."]
 
-[node name="Upper Frame" type="TextureRect" parent="Gameplay HUD"]
-modulate = Color( 1, 1, 1, 0.705882 )
+[node name="UI_Player" type="AnimationPlayer" parent="Gameplay HUD"]
+anims/LevelIntro = SubResource( 3 )
+anims/LevelOutro = SubResource( 4 )
+
+[node name="Glitch" type="TextureRect" parent="Gameplay HUD"]
+modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 1 )
 anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Upper Frame" type="TextureRect" parent="Gameplay HUD"]
+modulate = Color( 1, 1, 1, 0.666667 )
+anchor_right = 1.0
+margin_left = -8.0
 margin_bottom = 40.0
 texture = ExtResource( 9 )
 expand = true
@@ -169,11 +334,12 @@ __meta__ = {
 }
 
 [node name="Lower Frame" type="TextureRect" parent="Gameplay HUD"]
-modulate = Color( 1, 1, 1, 0.705882 )
+modulate = Color( 1, 1, 1, 0.666667 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -40.0
+margin_right = 12.0
 texture = ExtResource( 12 )
 expand = true
 __meta__ = {
@@ -185,7 +351,7 @@ margin_left = 44.0
 margin_top = 7.0
 margin_right = 73.0
 margin_bottom = 27.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.584314, 0.690196, 1, 1 )
 text = ": 0"
 align = 1
@@ -199,7 +365,7 @@ margin_top = 7.0
 margin_right = 594.0
 margin_bottom = 27.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0.741176, 0.584314, 1 )
 text = "Level Title"
 align = 1
@@ -218,3 +384,4 @@ __meta__ = {
 
 [connection signal="reachedGoal" from="YSort/Objects/Bot" to="." method="_on_Bot_reachedGoal"]
 [connection signal="step" from="YSort/Objects/Bot" to="." method="_on_Bot_step"]
+[connection signal="animation_finished" from="Gameplay HUD/UI_Player" to="." method="_on_UI_Player_animation_finished"]
