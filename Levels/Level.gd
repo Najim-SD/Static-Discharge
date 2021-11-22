@@ -42,5 +42,7 @@ func _on_GlitchTimer_timeout():
 
 func _on_UI_Player_animation_finished(anim_name):
 	if anim_name == "LevelOutro":
-		get_tree().reload_current_scene()
+		#get_tree().reload_current_scene()
+		get_tree().change_scene(nextLevelPath)
+		pass
 	pass # Replace with function body.

@@ -153,6 +153,7 @@ func _on_Area2D_area_entered(area):
 		currentTile = area.get_parent()
 		if area.is_in_group("GoalTiles"):
 			emit_signal("reachedGoal")
+			$CPUParticles2D.emitting = true
 			pass
 		#area.get_parent().find_node("Sprites/Highlight FX").modulate.a = 0.4
 	pass #
