@@ -167,14 +167,14 @@ tracks/1/keys = {
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "left",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "right",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "left",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -307,6 +307,10 @@ color_ramp = SubResource( 10 )
 hue_variation = 0.17
 hue_variation_random = 0.5
 
+[node name="Death Timer" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="animation_finished" from="Sprites/Antenna" to="." method="_on_Antenna_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="timeout" from="Death Timer" to="." method="_on_Death_Timer_timeout"]

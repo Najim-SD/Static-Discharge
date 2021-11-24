@@ -26,6 +26,10 @@ func set_CL_Label(level:int):
 
 func _on_Bot_step():
 	set_CL_Label(Bot_Ref.chargeLevel)
+	#step the Spikes
+	if $YSort.find_node("Spikes"):
+		for spike in $YSort/Spikes.get_children():
+			spike.step()
 	pass # Replace with function body.
 
 

@@ -80,6 +80,9 @@ func moveBot(dir):
 				if obj.is_in_group("Gates") and obj.find_node("AnimatedSprite").animation != "Lowered":
 					BotError()
 					return
+				elif obj.is_in_group("Spikes"):
+					if obj.state == 1:
+						$"Death Timer".start()
 				elif obj.is_in_group("Towers"):
 					pass
 			var nv:Vector2 = moveVec(position, dir)
@@ -175,3 +178,8 @@ func _on_Antenna_animation_finished():
 			else:
 				$Sprites/Antenna.play("Empty")
 	pass #
+
+
+func _on_Death_Timer_timeout():
+	get_tree().reload_current_scene()
+	pass # Replace with function body.
