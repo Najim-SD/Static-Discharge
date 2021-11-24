@@ -2,10 +2,17 @@ extends Node2D
 
 signal step
 signal reachedGoal
+signal CamFX
 var Hovering = false
 
 var chargeLevel:int = 0
 var currentTile
+
+func setCL():
+	$Sprites/CL.text = str(chargeLevel)
+	$Sprites/AnimationPlayer.stop(true)
+	$Sprites/AnimationPlayer.play("Label_Animation", -1, 2.0)
+	pass
 
 var AntennaPos:Dictionary = {
 	"up":Vector2(12, -30),
@@ -55,10 +62,18 @@ func staticDischarge():
 				sparksOnTile(tile, ap, (1.0-ap) * 1.2, l) # Span of 2 Seconds
 	
 	chargeLevel = 0
+	setCL()
 	$RingArea.scale = Vector2.ONE
 	$"Sprites/Edge Light".hide()
-	emit_signal("step")
 	
+	#check for spikes!!
+	
+	if currentTile.occupied and currentTile.occupier.is_in_group("Spikes"):
+		if currentTile.occupier.state == 1:
+			$"Death Timer".start()
+			emit_signal("CamFX")
+	
+	emit_signal("step")
 	pass # END StaticDischarge()
 
 func BotError():
@@ -83,6 +98,7 @@ func moveBot(dir):
 				elif obj.is_in_group("Spikes"):
 					if obj.state == 1:
 						$"Death Timer".start()
+						emit_signal("CamFX")
 				elif obj.is_in_group("Towers"):
 					pass
 			var nv:Vector2 = moveVec(position, dir)
@@ -94,12 +110,14 @@ func moveBot(dir):
 			# What kind of Tile?
 			if collider.is_in_group("StaticTiles"):
 				chargeLevel += 1
+				setCL()
 				$Sprites/Antenna.frame = 0
 				$Sprites/Antenna.play("Charging")
 				sparksOnTile(collider.get_parent(), 1.0, 0.1)
 			elif collider.is_in_group("NormalTiles"):
 				if chargeLevel > 0:
 					chargeLevel -= 1
+					setCL()
 					$Sprites/Antenna.frame = 0
 					$Sprites/Antenna.play("Discharging")
 					sparksOnTile(collider.get_parent(), 1.0, 0.1)

@@ -4,6 +4,7 @@ extends Camera2D
 export var targets = ["Player1"]
 var shaking = 0
 var shakingRange = Vector2(-3,3)
+var originalPos = position
 
 func shakeCam(duration:int, shakeR:Vector2):
 	if shaking <= 0 or shakeR.y >= shakingRange.y:
@@ -28,6 +29,8 @@ func _process(delta):
 		offset = Vector2(rand_range(shakingRange.x,shakingRange.y), rand_range(shakingRange.x,shakingRange.y))
 	else:
 		offset = Vector2.ZERO
+	
+	position = originalPos + offset
 	if targets.size() <= 0:
 		return
 	var pos:Vector2 = get_parent().find_node(targets[0]).position

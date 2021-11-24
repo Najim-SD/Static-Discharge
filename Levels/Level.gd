@@ -50,3 +50,10 @@ func _on_UI_Player_animation_finished(anim_name):
 		get_tree().change_scene(nextLevelPath)
 		pass
 	pass # Replace with function body.
+
+
+func _on_Bot_CamFX():
+	$MultiCam.shakeCam(30, Vector2(-5,5))
+	$MultiCam.playFX("WhiteScreenFX")
+	#$"Gameplay HUD/Glitch".modulate.a = 1.0
+	pass # Replace with function body.
