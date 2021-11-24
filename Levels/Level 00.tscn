@@ -300,7 +300,7 @@ position = Vector2( 288, 144 )
 [node name="Objects" type="YSort" parent="YSort"]
 
 [node name="Bot" parent="YSort/Objects" instance=ExtResource( 2 )]
-position = Vector2( 352, 128 )
+position = Vector2( 320, 112 )
 
 [node name="Electric Gate" parent="YSort/Objects" instance=ExtResource( 1 )]
 position = Vector2( 160, 48 )

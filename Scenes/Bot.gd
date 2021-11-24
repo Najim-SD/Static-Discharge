@@ -11,7 +11,8 @@ var AntennaPos:Dictionary = {
 	"up":Vector2(12, -30),
 	"down":Vector2(-16, -44),
 	"left":Vector2(12, -44),
-	"right":Vector2(-16, -30)}
+	"right":Vector2(-16, -30)
+	}
 
 func _ready():
 	pass #_ready()
