@@ -169,7 +169,7 @@ font_data = ExtResource( 2 )
 script = ExtResource( 4 )
 levelName = "Remotely"
 levelNumber = "03"
-nextLevelPath = "res://Levels/Level 00.tscn"
+nextLevelPath = "res://Levels/Level 04.tscn"
 
 [node name="MultiCam" parent="." instance=ExtResource( 9 )]
 position = Vector2( 256, 220 )

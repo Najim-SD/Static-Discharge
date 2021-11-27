@@ -1,21 +1,20 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=1]
-[ext_resource path="res://Art/UI/S.png" type="Texture" id=2]
-[ext_resource path="res://Art/FX/BlackScreen.png" type="Texture" id=3]
-[ext_resource path="res://Resources/WorldEnvironment.tres" type="Environment" id=4]
+[ext_resource path="res://Art/UI/S.png" type="Texture" id=1]
+[ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=2]
+[ext_resource path="res://Art/UI/Screen.png" type="Texture" id=3]
+[ext_resource path="res://Resources/glitch_effect.shader" type="Shader" id=4]
 [ext_resource path="res://Art/UI/Font/Xolonium-Regular.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Resources/glitch_effect.shader" type="Shader" id=6]
-[ext_resource path="res://Levels/Level.gd" type="Script" id=7]
-[ext_resource path="res://Art/UI/Screen.png" type="Texture" id=8]
+[ext_resource path="res://Art/FX/BlackScreen.png" type="Texture" id=6]
+[ext_resource path="res://Resources/WorldEnvironment.tres" type="Environment" id=7]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Bot.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Electric Gate.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Tiles/Static Tile.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Spikes.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Electric Gate.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Tiles/Static Tile.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Tiles/Normal Tile.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Tiles/Goal Tile.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Spikes.gd" type="Script" id=15]
-[ext_resource path="res://Scenes/Spikes.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "LevelIntro"
@@ -156,7 +155,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 6 )
+shader = ExtResource( 4 )
 shader_param/shake_power = 0.03
 shader_param/shake_rate = 1.0
 shader_param/shake_speed = 5.0
@@ -166,13 +165,13 @@ shader_param/shake_color_rate = 0.01
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 5 )
 
-[node name="Level 01" type="Node2D"]
-script = ExtResource( 7 )
-levelName = "Disfunctional"
-levelNumber = "01"
-nextLevelPath = "res://Levels/Level 02.tscn"
+[node name="Level 04" type="Node2D"]
+script = ExtResource( 8 )
+levelName = "Three Phased Spikes"
+levelNumber = "04"
+nextLevelPath = "res://Levels/Level 00.tscn"
 
-[node name="MultiCam" parent="." instance=ExtResource( 12 )]
+[node name="MultiCam" parent="." instance=ExtResource( 15 )]
 position = Vector2( 256, 220 )
 zoom = Vector2( 0.7, 0.7 )
 drag_margin_left = 0.0
@@ -182,217 +181,149 @@ drag_margin_bottom = 0.0
 targets = [ "Cam Target" ]
 
 [node name="Cam Target" type="Position2D" parent="."]
-position = Vector2( 256, 112 )
+position = Vector2( 288, 128 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 4 )
+environment = ExtResource( 7 )
 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Tiles" type="YSort" parent="YSort"]
 
 [node name="Goal Tile" parent="YSort/Tiles" instance=ExtResource( 14 )]
-position = Vector2( 128, 32 )
-
-[node name="Normal Tile" parent="YSort/Tiles" instance=ExtResource( 13 )]
 position = Vector2( 160, 48 )
 
-[node name="Normal Tile2" parent="YSort/Tiles" instance=ExtResource( 13 )]
-position = Vector2( 256, 32 )
-
-[node name="Normal Tile3" parent="YSort/Tiles" instance=ExtResource( 13 )]
-position = Vector2( 288, 48 )
-
-[node name="Normal Tile5" parent="YSort/Tiles" instance=ExtResource( 13 )]
-position = Vector2( 224, 48 )
-
-[node name="Normal Tile6" parent="YSort/Tiles" instance=ExtResource( 13 )]
-position = Vector2( 160, 112 )
-
-[node name="Normal Tile4" parent="YSort/Tiles" instance=ExtResource( 13 )]
-position = Vector2( 288, 80 )
-
-[node name="Static Tile" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 160, 80 )
-
-[node name="Static Tile3" parent="YSort/Tiles" instance=ExtResource( 11 )]
+[node name="Normal Tile" parent="YSort/Tiles" instance=ExtResource( 13 )]
 position = Vector2( 192, 64 )
 
-[node name="Static Tile5" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 128, 96 )
-
-[node name="Static Tile2" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 192, 96 )
-
-[node name="Static Tile7" parent="YSort/Tiles" instance=ExtResource( 11 )]
+[node name="Normal Tile2" parent="YSort/Tiles" instance=ExtResource( 13 )]
 position = Vector2( 224, 80 )
 
-[node name="Static Tile11" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 224, 112 )
-
-[node name="Static Tile12" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 256, 96 )
-
-[node name="Static Tile15" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 320, 64 )
-
-[node name="Static Tile16" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 256, 128 )
-
-[node name="Static Tile18" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 320, 96 )
-
-[node name="Static Tile19" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 224, 144 )
-
-[node name="Static Tile22" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 288, 112 )
-
-[node name="Static Tile20" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 352, 80 )
-
-[node name="Static Tile21" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 288, 144 )
-
-[node name="Static Tile23" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 352, 112 )
-
-[node name="Static Tile24" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 256, 160 )
-
-[node name="Static Tile25" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 384, 96 )
-
-[node name="Static Tile26" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 320, 160 )
-
-[node name="Static Tile27" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 352, 144 )
-
-[node name="Static Tile28" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 384, 128 )
-
-[node name="Static Tile29" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 288, 176 )
-
-[node name="Static Tile30" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 416, 112 )
-
-[node name="Static Tile31" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 352, 176 )
-
-[node name="Static Tile32" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 384, 160 )
-
-[node name="Static Tile33" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 416, 144 )
-
-[node name="Static Tile34" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 320, 192 )
-
-[node name="Static Tile35" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 448, 128 )
-
-[node name="Static Tile36" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 384, 192 )
-
-[node name="Static Tile37" parent="YSort/Tiles" instance=ExtResource( 11 )]
+[node name="Normal Tile3" parent="YSort/Tiles" instance=ExtResource( 13 )]
 position = Vector2( 416, 176 )
 
-[node name="Static Tile38" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 448, 160 )
+[node name="Normal Tile21" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 256, 64 )
 
-[node name="Static Tile39" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 352, 208 )
+[node name="Normal Tile20" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 192, 96 )
 
-[node name="Static Tile40" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 480, 144 )
+[node name="Normal Tile19" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 192, 160 )
+
+[node name="Normal Tile18" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 192, 128 )
+
+[node name="Normal Tile17" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 256, 160 )
+
+[node name="Normal Tile16" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 384, 160 )
+
+[node name="Normal Tile15" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 320, 160 )
+
+[node name="Normal Tile14" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 384, 128 )
+
+[node name="Normal Tile11" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 320, 64 )
+
+[node name="Normal Tile12" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 384, 96 )
+
+[node name="Normal Tile13" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 384, 64 )
+
+[node name="Normal Tile8" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 352, 80 )
+
+[node name="Normal Tile9" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 352, 144 )
+
+[node name="Normal Tile10" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 224, 144 )
+
+[node name="Normal Tile4" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 224, 112 )
+
+[node name="Normal Tile5" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 288, 80 )
+
+[node name="Normal Tile6" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 352, 112 )
+
+[node name="Normal Tile7" parent="YSort/Tiles" instance=ExtResource( 13 )]
+position = Vector2( 288, 144 )
+
+[node name="Static Tile7" parent="YSort/Tiles" instance=ExtResource( 12 )]
+position = Vector2( 256, 96 )
+
+[node name="Static Tile11" parent="YSort/Tiles" instance=ExtResource( 12 )]
+position = Vector2( 256, 128 )
+
+[node name="Static Tile12" parent="YSort/Tiles" instance=ExtResource( 12 )]
+position = Vector2( 288, 112 )
+
+[node name="Static Tile18" parent="YSort/Tiles" instance=ExtResource( 12 )]
+position = Vector2( 320, 96 )
+
+[node name="Static Tile22" parent="YSort/Tiles" instance=ExtResource( 12 )]
+position = Vector2( 320, 128 )
 
 [node name="Objects" type="YSort" parent="YSort"]
 
 [node name="Bot" parent="YSort/Objects" instance=ExtResource( 9 )]
 position = Vector2( 416, 192 )
 
-[node name="Electric Gate" parent="YSort/Objects" instance=ExtResource( 10 )]
-position = Vector2( 160, 48 )
+[node name="Electric Gate" parent="YSort/Objects" instance=ExtResource( 11 )]
+position = Vector2( 192, 64 )
 
 [node name="Spikes" type="YSort" parent="YSort"]
 
-[node name="Spikes" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 288, 112 )
-script = ExtResource( 15 )
 state = 1
 
-[node name="Spikes3" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes4" parent="YSort/Spikes" instance=ExtResource( 10 )]
+position = Vector2( 320, 128 )
+state = 2
+
+[node name="Spikes3" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 320, 96 )
-script = ExtResource( 15 )
+state = 2
 
-[node name="Spikes5" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes5" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 256, 96 )
-script = ExtResource( 15 )
 state = 2
 
-[node name="Spikes10" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes10" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 256, 128 )
-script = ExtResource( 15 )
+state = 2
 
-[node name="Spikes7" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes7" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 224, 112 )
-script = ExtResource( 15 )
-state = 2
 
-[node name="Spikes8" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes8" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 288, 144 )
-script = ExtResource( 15 )
-state = 2
 
-[node name="Spikes11" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes11" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 352, 112 )
-script = ExtResource( 15 )
-state = 2
 
-[node name="Spikes12" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes12" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 288, 80 )
-script = ExtResource( 15 )
-state = 2
 
-[node name="Spikes16" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes16" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 352, 80 )
-script = ExtResource( 15 )
 
-[node name="Spikes15" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes14" parent="YSort/Spikes" instance=ExtResource( 10 )]
+position = Vector2( 224, 80 )
+
+[node name="Spikes15" parent="YSort/Spikes" instance=ExtResource( 10 )]
 position = Vector2( 224, 144 )
-script = ExtResource( 15 )
+
+[node name="Spikes17" parent="YSort/Spikes" instance=ExtResource( 10 )]
+position = Vector2( 352, 144 )
 
 [node name="Gameplay HUD" type="CanvasLayer" parent="."]
 
@@ -405,7 +336,7 @@ modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 stretch_mode = 1
 __meta__ = {
 "_edit_lock_": true,
@@ -417,9 +348,10 @@ modulate = Color( 1, 1, 1, 0.666667 )
 anchor_right = 1.0
 margin_left = -8.0
 margin_bottom = 40.0
-texture = ExtResource( 8 )
+texture = ExtResource( 3 )
 expand = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -430,9 +362,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -40.0
 margin_right = 12.0
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 expand = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -446,6 +379,7 @@ custom_colors/font_color = Color( 0.584314, 0.690196, 1, 1 )
 text = ": 0"
 align = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -460,6 +394,7 @@ custom_colors/font_color = Color( 1, 0.741176, 0.584314, 1 )
 text = "Level Title"
 align = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -467,11 +402,13 @@ __meta__ = {
 margin_left = 10.9602
 margin_right = 50.9602
 margin_bottom = 41.0
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
+[connection signal="CamFX" from="YSort/Objects/Bot" to="." method="_on_Bot_CamFX"]
 [connection signal="reachedGoal" from="YSort/Objects/Bot" to="." method="_on_Bot_reachedGoal"]
 [connection signal="step" from="YSort/Objects/Bot" to="." method="_on_Bot_step"]
 [connection signal="animation_finished" from="Gameplay HUD/UI_Player" to="." method="_on_UI_Player_animation_finished"]
