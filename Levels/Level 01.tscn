@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/S.png" type="Texture" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Tiles/Normal Tile.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Tiles/Goal Tile.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Spikes.gd" type="Script" id=15]
 [ext_resource path="res://Scenes/Spikes.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
@@ -318,81 +317,41 @@ position = Vector2( 160, 48 )
 
 [node name="Spikes" type="YSort" parent="YSort"]
 
-[node name="Spikes" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 288, 112 )
-script = ExtResource( 15 )
 state = 1
 
-[node name="Spikes3" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes3" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 320, 96 )
-script = ExtResource( 15 )
 
-[node name="Spikes5" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes5" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 256, 96 )
-script = ExtResource( 15 )
 state = 2
 
-[node name="Spikes10" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes10" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 256, 128 )
-script = ExtResource( 15 )
 
-[node name="Spikes7" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes7" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 224, 112 )
-script = ExtResource( 15 )
 state = 2
 
-[node name="Spikes8" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes8" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 288, 144 )
-script = ExtResource( 15 )
 state = 2
 
-[node name="Spikes11" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes11" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 352, 112 )
-script = ExtResource( 15 )
 state = 2
 
-[node name="Spikes12" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes12" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 288, 80 )
-script = ExtResource( 15 )
 state = 2
 
-[node name="Spikes16" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes16" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 352, 80 )
-script = ExtResource( 15 )
 
-[node name="Spikes15" type="Node2D" parent="YSort/Spikes" groups=[
-"Objects",
-"Spikes",
-] instance=ExtResource( 16 )]
+[node name="Spikes15" parent="YSort/Spikes" instance=ExtResource( 16 )]
 position = Vector2( 224, 144 )
-script = ExtResource( 15 )
 
 [node name="Gameplay HUD" type="CanvasLayer" parent="."]
 
