@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Electric Gate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Bot.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=12]
 [ext_resource path="res://Art/UI/S.png" type="Texture" id=13]
 [ext_resource path="res://Resources/glitch_effect.shader" type="Shader" id=14]
+[ext_resource path="res://Scenes/LR.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "LevelIntro"
@@ -304,6 +305,9 @@ position = Vector2( 320, 112 )
 
 [node name="Electric Gate" parent="YSort/Objects" instance=ExtResource( 1 )]
 position = Vector2( 160, 48 )
+
+[node name="LR" parent="YSort/Objects" instance=ExtResource( 15 )]
+position = Vector2( 256, 96 )
 
 [node name="Gameplay HUD" type="CanvasLayer" parent="."]
 
