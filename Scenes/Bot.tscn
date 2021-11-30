@@ -168,14 +168,14 @@ tracks/1/keys = {
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "right",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "left",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "right",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -196,28 +196,28 @@ animations = [ {
 "name": "Empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 23 ) ],
 "loop": false,
-"name": "Charging",
-"speed": 18.0
+"name": "Discharging",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "Charged",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 23 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 20 ) ],
 "loop": false,
-"name": "Discharging",
-"speed": 10.0
+"name": "Charging",
+"speed": 18.0
 } ]
 
-[sub_resource type="DynamicFont" id=11]
-size = 12
+[sub_resource type="DynamicFont" id=8]
+size = 22
 outline_size = 1
 font_data = ExtResource( 30 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 resource_name = "Label_Animation"
 tracks/0/type = "value"
 tracks/0/path = NodePath("CL:custom_fonts/font:size")
@@ -256,13 +256,13 @@ tracks/2/keys = {
 "values": [ -50, -80 ]
 }
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=10]
 radius = 10.0499
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=11]
 _data = [ Vector2( 0, 0.113636 ), 0.0, 0.0, 0, 0, Vector2( 0.191083, 0.404545 ), 0.0, 0.356818, 0, 0, Vector2( 1, 0.85 ), 0.920821, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=10]
+[sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0, 0.768657, 1 )
 colors = PoolColorArray( 1, 0.758133, 0.488281, 1, 1, 1, 1, 0.945098, 1, 1, 1, 0 )
 
@@ -303,14 +303,14 @@ animation = "Empty"
 playing = true
 
 [node name="CL" type="Label" parent="Sprites"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.705882 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -15.0
-margin_top = -50.0
+margin_top = -80.0
 margin_right = 15.0
 margin_bottom = -20.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 0.756863, 0.470588, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "0"
@@ -320,7 +320,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
-anims/Label_Animation = SubResource( 12 )
+anims/Label_Animation = SubResource( 9 )
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "Player",
@@ -329,37 +329,36 @@ anims/Label_Animation = SubResource( 12 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 position = Vector2( 0, -3 )
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
 enabled = true
 cast_to = Vector2( -32, -16 )
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="RingArea" type="Area2D" parent="."]
-visible = false
-monitorable = false
-collision_layer = 2
+[node name="RingArea" type="Area2D" parent="." groups=[
+"SparkField",
+]]
+collision_layer = 16
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RingArea"]
+visible = false
 polygon = PoolVector2Array( 0, -16, -32, 0, 0, 16, 32, 0 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2( 0, 2 )
+position = Vector2( 7, -26 )
 scale = Vector2( 0.2, 0.2 )
 emitting = false
-amount = 20
-lifetime = 2.0
-explosiveness = 0.14
+amount = 100
+lifetime = 3.0
 randomness = 0.6
 lifetime_randomness = 0.28
 texture = ExtResource( 29 )
-direction = Vector2( 0, -1 )
+direction = Vector2( 0.5, 1 )
 spread = 90.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 129.41
+initial_velocity = 275.96
 initial_velocity_random = 0.36
 angular_velocity = 67.75
 angular_velocity_random = 0.7
@@ -367,8 +366,8 @@ linear_accel = 18.82
 damping = 60.01
 scale_amount = 3.0
 scale_amount_random = 1.0
-scale_amount_curve = SubResource( 9 )
-color_ramp = SubResource( 10 )
+scale_amount_curve = SubResource( 11 )
+color_ramp = SubResource( 12 )
 hue_variation = 0.17
 hue_variation_random = 0.5
 

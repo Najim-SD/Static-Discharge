@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/LR.gd" type="Script" id=1]
 [ext_resource path="res://Art/LR/LR FX/4.png" type="Texture" id=2]
@@ -23,7 +23,46 @@ animations = [ {
 } ]
 
 [sub_resource type="Animation" id=2]
-resource_name = "Hit"
+resource_name = "Arrest"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 2 ), Vector2( -3, 2 ), Vector2( 2, -1 ), Vector2( -1, 1 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Line2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Line2D:width")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ 10.0, 3.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Move down"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites:position")
 tracks/0/interp = 1
@@ -31,10 +70,55 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
 "update": 0,
-"values": [ Vector2( 5, 2 ), Vector2( -3, 2 ), Vector2( 2, -1 ), Vector2( -1, 1 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( -32, -16 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Move left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 32, -16 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Move right"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( -32, 16 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Move up"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 32, 16 ), Vector2( 0, 0 ) ]
 }
 
 [node name="LR" type="Node2D" groups=[
@@ -69,13 +153,29 @@ playing = true
 "Objects",
 ]]
 collision_layer = 4
+collision_mask = 17
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 visible = false
-polygon = PoolVector2Array( 26.6631, 14.9335, -2.00008, 29.2651, -6.33106, 27.2177, 21.7022, 13.5161 )
+polygon = PoolVector2Array( 25, 16, 0, 28, -26, 16, 0, 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hit = SubResource( 2 )
+anims/Arrest = SubResource( 2 )
+"anims/Move down" = SubResource( 3 )
+"anims/Move left" = SubResource( 4 )
+"anims/Move right" = SubResource( 5 )
+"anims/Move up" = SubResource( 6 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
+points = PoolVector2Array( 0, -35, 73, 137 )
+width = 3.0
+default_color = Color( 0.713726, 0.760784, 0.992157, 1 )
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

@@ -32,7 +32,6 @@ func _on_Bot_step():
 			spike.step()
 	pass # Replace with function body.
 
-
 func _on_Bot_reachedGoal():
 	$"Gameplay HUD/UI_Player".stop(true)
 	$"Gameplay HUD/UI_Player".play("LevelOutro")

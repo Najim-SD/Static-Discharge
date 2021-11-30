@@ -12,6 +12,11 @@ func setCL():
 	$Sprites/CL.text = str(chargeLevel)
 	$Sprites/AnimationPlayer.stop(true)
 	$Sprites/AnimationPlayer.play("Label_Animation", -1, 2.0)
+	
+	$RingArea.scale = Vector2(chargeLevel*2 +1, chargeLevel*2 +1)
+	if chargeLevel > 0 :
+		$"Sprites/Edge Light".show()
+	else : $"Sprites/Edge Light".hide()
 	pass
 
 var AntennaPos:Dictionary = {
@@ -99,7 +104,18 @@ func moveBot(dir):
 					if obj.state == 1:
 						$"Death Timer".start()
 						emit_signal("CamFX")
-				elif obj.is_in_group("Towers"):
+				elif obj.is_in_group("LR"):
+					var or_pos = $RayCast2D.position
+					$RayCast2D.position = moveVec(Vector2.ZERO, dir)
+					#$RayCast2D.cast_to = moveVec(Vector2.ZERO, dir) * 2
+					$RayCast2D.force_raycast_update()
+					var nc:Area2D = $RayCast2D.get_collider()
+					$RayCast2D.position = or_pos
+					if nc != null:
+						obj.move(dir)
+					else:
+						BotError()
+						return
 					pass
 			var nv:Vector2 = moveVec(position, dir)
 			$Sprites.position -= (nv - position)
@@ -123,10 +139,6 @@ func moveBot(dir):
 					sparksOnTile(collider.get_parent(), 1.0, 0.1)
 				else:
 					pass # Dust
-			if chargeLevel > 0 :
-				$"Sprites/Edge Light".show()
-				$RingArea.scale = Vector2(chargeLevel*2 +1, chargeLevel*2 +1)
-			else : $"Sprites/Edge Light".hide()
 			# STEP
 			emit_signal("step")
 	else :
