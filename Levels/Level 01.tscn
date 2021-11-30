@@ -431,6 +431,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="CamFX" from="YSort/Objects/Bot" to="." method="_on_Bot_CamFX"]
 [connection signal="reachedGoal" from="YSort/Objects/Bot" to="." method="_on_Bot_reachedGoal"]
 [connection signal="step" from="YSort/Objects/Bot" to="." method="_on_Bot_step"]
 [connection signal="animation_finished" from="Gameplay HUD/UI_Player" to="." method="_on_UI_Player_animation_finished"]

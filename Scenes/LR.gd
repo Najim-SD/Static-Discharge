@@ -2,6 +2,8 @@ extends Node2D
 
 var pushable = true
 
+signal camfx2
+
 func shock(chargeLevel):
 	$Sprites/FX.frame = 0
 	$Sprites/FX.play("FX")
@@ -51,12 +53,13 @@ func _on_Area2D_area_entered(area):
 		
 		$AnimationPlayer.stop(true)
 		$AnimationPlayer.play("Arrest")
-		$CanvasLayer/Line2D.points[0] = self.get_global_transform_with_canvas().origin + Vector2(0, -50)
+		$CanvasLayer/Line2D.points[0] = self.get_global_transform_with_canvas().origin + Vector2(0, -45)
 		$CanvasLayer/Line2D.points[1] = area.get_parent().get_global_transform_with_canvas().origin + Vector2(0, -15)
 		
 		area.get_parent().chargeLevel = 0
 		area.get_parent().setCL()
 		get_tree().root.get_child(0).set_CL_Label(0)
+		emit_signal("camfx2")
 	pass # Replace with function body.
 
 

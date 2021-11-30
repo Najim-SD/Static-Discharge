@@ -52,7 +52,16 @@ func _on_UI_Player_animation_finished(anim_name):
 
 
 func _on_Bot_CamFX():
+	print("BotDeath FX")
 	$MultiCam.shakeCam(30, Vector2(-5,5))
 	$MultiCam.playFX("WhiteScreenFX")
-	#$"Gameplay HUD/Glitch".modulate.a = 1.0
+	$"Gameplay HUD/Glitch".modulate.a = 1.0
+	pass # Replace with function body.
+
+
+func _on_LR_camfx2():
+	$MultiCam.shakeCam(30, Vector2(-1,1))
+	$MultiCam.playFX("BlackScreenFX")
+	$"Gameplay HUD/UI_Player".stop(true)
+	$"Gameplay HUD/UI_Player".play("Glitch")
 	pass # Replace with function body.

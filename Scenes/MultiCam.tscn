@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://Art/FX/ScreenFX.png" type="Texture" id=2]
@@ -8,6 +8,12 @@
 [ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0004.png" type="Texture" id=6]
 [ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0003.png" type="Texture" id=7]
 [ext_resource path="res://Art/Fx/WhiteScreenFX/WhiteScreenFX0002.png" type="Texture" id=8]
+[ext_resource path="res://Art/FX/BlkScreenFX/B1.png" type="Texture" id=9]
+[ext_resource path="res://Art/FX/BlkScreenFX/B5.png" type="Texture" id=10]
+[ext_resource path="res://Art/FX/BlkScreenFX/B3.png" type="Texture" id=11]
+[ext_resource path="res://Art/FX/BlkScreenFX/B2.png" type="Texture" id=12]
+[ext_resource path="res://Art/FX/BlkScreenFX/B4.png" type="Texture" id=13]
+[ext_resource path="res://Art/FX/BlkScreenFX/B0.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -15,6 +21,11 @@ animations = [ {
 "loop": false,
 "name": "WhiteScreenFX",
 "speed": 24.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 10 ) ],
+"loop": false,
+"name": "BlackScreenFX",
+"speed": 18.0
 } ]
 
 [node name="MultiCam" type="Camera2D"]
@@ -31,7 +42,14 @@ __meta__ = {
 }
 
 [node name="HUD" type="CanvasLayer" parent="."]
-layer = 2
+
+[node name="AnimatedFX" type="AnimatedSprite" parent="HUD"]
+visible = false
+modulate = Color( 0.65098, 0.839216, 1, 0.431373 )
+frames = SubResource( 1 )
+animation = "WhiteScreenFX"
+frame = 4
+centered = false
 
 [node name="FPS" parent="HUD" instance=ExtResource( 3 )]
 anchor_left = 1.0
@@ -41,20 +59,13 @@ margin_top = -22.0
 margin_right = -5.0
 margin_bottom = -2.0
 
-[node name="AnimatedFX" type="AnimatedSprite" parent="HUD"]
-visible = false
-modulate = Color( 0.65098, 0.839216, 1, 0.431373 )
-frames = SubResource( 1 )
-animation = "WhiteScreenFX"
-frame = 4
-playing = true
-centered = false
-
 [node name="TextureRect" type="TextureRect" parent="HUD"]
 modulate = Color( 1, 1, 1, 0.509804 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
+expand = true
+stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }

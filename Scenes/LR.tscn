@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/LR.gd" type="Script" id=1]
 [ext_resource path="res://Art/LR/LR FX/4.png" type="Texture" id=2]
@@ -13,6 +13,12 @@
 [ext_resource path="res://Art/LR/LR FX/7.png" type="Texture" id=11]
 [ext_resource path="res://Art/LR/LR FX/10.png" type="Texture" id=12]
 [ext_resource path="res://Art/LR/LR Shadow.png" type="Texture" id=13]
+[ext_resource path="res://Art/LR/Lightning Line/Lightning Line 0.png" type="Texture" id=14]
+[ext_resource path="res://Art/LR/Lightning Line/Lightning Line 2.png" type="Texture" id=15]
+[ext_resource path="res://Art/LR/Lightning Line/Lightning Line 5.png" type="Texture" id=16]
+[ext_resource path="res://Art/LR/Lightning Line/Lightning Line 3.png" type="Texture" id=17]
+[ext_resource path="res://Art/LR/Lightning Line/Lightning Line 4.png" type="Texture" id=18]
+[ext_resource path="res://Art/LR/Lightning Line/Lightning Line 1.png" type="Texture" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -58,7 +64,19 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 0.3, 1 ),
 "update": 0,
-"values": [ 10.0, 3.0 ]
+"values": [ 20.0, 10.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Line2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 16 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -170,9 +188,10 @@ anims/Arrest = SubResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
-points = PoolVector2Array( 0, -35, 73, 137 )
-width = 3.0
-default_color = Color( 0.713726, 0.760784, 0.992157, 1 )
+points = PoolVector2Array( 0, -35, 63, 131 )
+default_color = Color( 0.980392, 0.984314, 1, 1 )
+texture = ExtResource( 16 )
+texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
