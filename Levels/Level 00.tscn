@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/Tiles/Normal Tile.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Tiles/Static Tile.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Tiles/Goal Tile.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Art/UI/Screen.png" type="Texture" id=9]
+[ext_resource path="res://Art/UI/Upper Frame.png" type="Texture" id=9]
 [ext_resource path="res://Art/UI/Font/Xolonium-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=11]
 [ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=12]
