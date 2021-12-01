@@ -8,6 +8,8 @@ var Hovering = false
 var chargeLevel:int = 0
 var currentTile
 
+var disabled = false
+
 func setCL():
 	$Sprites/CL.text = str(chargeLevel)
 	$Sprites/AnimationPlayer.stop(true)
@@ -31,6 +33,7 @@ func _ready():
 
 
 func _process(delta):
+	if disabled: return
 	if justPressed("up"):
 		moveBot("up")
 	elif justPressed("down"):

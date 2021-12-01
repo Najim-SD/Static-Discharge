@@ -168,14 +168,14 @@ tracks/1/keys = {
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "left",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "right",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "left",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -191,6 +191,16 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 20 ) ],
+"loop": false,
+"name": "Charging",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "Charged",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 28 ) ],
 "loop": true,
 "name": "Empty",
@@ -200,16 +210,6 @@ animations = [ {
 "loop": false,
 "name": "Discharging",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "Charged",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 20 ) ],
-"loop": false,
-"name": "Charging",
-"speed": 18.0
 } ]
 
 [sub_resource type="DynamicFont" id=8]
@@ -356,7 +356,7 @@ lifetime = 3.0
 randomness = 0.6
 lifetime_randomness = 0.28
 texture = ExtResource( 29 )
-direction = Vector2( 0.5, 1 )
+direction = Vector2( 0, 1 )
 spread = 90.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 275.96
