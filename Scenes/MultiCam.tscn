@@ -48,7 +48,6 @@ visible = false
 modulate = Color( 0.65098, 0.839216, 1, 0.431373 )
 frames = SubResource( 1 )
 animation = "WhiteScreenFX"
-frame = 4
 centered = false
 
 [node name="FPS" parent="HUD" instance=ExtResource( 3 )]
