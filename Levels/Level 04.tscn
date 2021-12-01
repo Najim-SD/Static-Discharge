@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Art/UI/S.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=2]
@@ -17,7 +17,21 @@
 [ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
-resource_name = "LevelIntro"
+resource_name = "ZoomOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MultiCam:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 0.4, 0.4 ), Vector2( 0.7, 0.7 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Glitch:modulate")
 tracks/0/interp = 1
@@ -103,8 +117,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.666667 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "LevelOutro"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Upper Frame:margin_bottom")
 tracks/0/interp = 1
@@ -154,7 +167,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 4 )
 shader_param/shake_power = 0.03
 shader_param/shake_rate = 1.0
@@ -162,7 +175,7 @@ shader_param/shake_speed = 5.0
 shader_param/shake_block_size = 30.5
 shader_param/shake_color_rate = 0.01
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 5 )
 
 [node name="Level 04" type="Node2D"]
@@ -171,9 +184,12 @@ levelName = "Tight Spaces"
 levelNumber = "04"
 nextLevelPath = "res://Levels/Level 05.tscn"
 
+[node name="CamPlayer" type="AnimationPlayer" parent="."]
+anims/ZoomOut = SubResource( 1 )
+
 [node name="MultiCam" parent="." instance=ExtResource( 15 )]
-position = Vector2( 256, 220 )
-zoom = Vector2( 0.7, 0.7 )
+position = Vector2( 288, 224 )
+zoom = Vector2( 0.8, 0.8 )
 drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
@@ -328,12 +344,12 @@ position = Vector2( 352, 144 )
 [node name="Gameplay HUD" type="CanvasLayer" parent="."]
 
 [node name="UI_Player" type="AnimationPlayer" parent="Gameplay HUD"]
-anims/LevelIntro = SubResource( 1 )
-anims/LevelOutro = SubResource( 2 )
+anims/LevelIntro = SubResource( 2 )
+anims/LevelOutro = SubResource( 3 )
 
 [node name="Glitch" type="TextureRect" parent="Gameplay HUD"]
 modulate = Color( 1, 1, 1, 0 )
-material = SubResource( 3 )
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
@@ -374,7 +390,7 @@ margin_left = 44.0
 margin_top = 7.0
 margin_right = 73.0
 margin_bottom = 27.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.584314, 0.690196, 1, 1 )
 text = ": 0"
 align = 1
@@ -389,7 +405,7 @@ margin_top = 7.0
 margin_right = 594.0
 margin_bottom = 27.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 0.741176, 0.584314, 1 )
 text = "Level Title"
 align = 1

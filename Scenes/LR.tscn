@@ -78,6 +78,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ ExtResource( 14 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 16 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Line2D:default_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.980392, 0.984314, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Move down"
@@ -92,6 +104,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 0.3, 1 ),
 "update": 0,
 "values": [ Vector2( -32, -16 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Line2D:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.980392, 0.984314, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -108,6 +132,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 32, -16 ), Vector2( 0, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Line2D:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.980392, 0.984314, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Move right"
@@ -123,6 +159,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( -32, 16 ), Vector2( 0, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Line2D:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.980392, 0.984314, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Move up"
@@ -137,6 +185,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 0.3, 1 ),
 "update": 0,
 "values": [ Vector2( 32, 16 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Line2D:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.980392, 0.984314, 1, 0 ) ]
 }
 
 [node name="LR" type="Node2D" groups=[

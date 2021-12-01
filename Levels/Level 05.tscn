@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Art/UI/S.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/Lower Frame.png" type="Texture" id=2]
@@ -17,7 +17,22 @@
 [ext_resource path="res://Scenes/Tiles/Static Tile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/LR.tscn" type="PackedScene" id=16]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
+resource_name = "ZoomOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MultiCam:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 0.4, 0.4 ), Vector2( 0.8, 0.8 ) ]
+}
+
+[sub_resource type="Animation" id=1]
 resource_name = "Glitch"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Glitch:modulate")
@@ -32,7 +47,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0.509804 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Glitch:modulate")
 tracks/0/interp = 1
@@ -118,7 +133,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.666667 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Upper Frame:margin_bottom")
 tracks/0/interp = 1
@@ -168,7 +183,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 4 )
 shader_param/shake_power = 0.03
 shader_param/shake_rate = 1.0
@@ -176,7 +191,7 @@ shader_param/shake_speed = 5.0
 shader_param/shake_block_size = 30.5
 shader_param/shake_color_rate = 0.01
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 5 )
 
 [node name="Level 05" type="Node2D"]
@@ -185,9 +200,12 @@ levelName = "Security Measures"
 levelNumber = "05"
 nextLevelPath = "res://Levels/Level 05.tscn"
 
+[node name="CamPlayer" type="AnimationPlayer" parent="."]
+anims/ZoomOut = SubResource( 6 )
+
 [node name="MultiCam" parent="." instance=ExtResource( 10 )]
-position = Vector2( 224, 208 )
-zoom = Vector2( 0.7, 0.7 )
+position = Vector2( 192, 240 )
+zoom = Vector2( 0.8, 0.8 )
 drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
@@ -195,10 +213,7 @@ drag_margin_bottom = 0.0
 targets = [ "Cam Target" ]
 
 [node name="Cam Target" type="Position2D" parent="."]
-position = Vector2( 224, 128 )
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2( 192, 144 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 7 )
@@ -209,10 +224,10 @@ position = Vector2( -64, 32 )
 [node name="Tiles" type="YSort" parent="YSort"]
 
 [node name="Goal Tile" parent="YSort/Tiles" instance=ExtResource( 14 )]
-position = Vector2( 192, 32 )
+position = Vector2( 160, 48 )
 
 [node name="Normal Tile" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 224, 48 )
+position = Vector2( 192, 64 )
 
 [node name="Normal Tile2" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 224, 80 )
@@ -226,26 +241,59 @@ position = Vector2( 288, 80 )
 [node name="Normal Tile22" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 160, 112 )
 
-[node name="Normal Tile24" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 288, 48 )
+[node name="Normal Tile26" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 96, 144 )
 
-[node name="Normal Tile25" parent="YSort/Tiles" instance=ExtResource( 11 )]
+[node name="Normal Tile40" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 64, 128 )
+
+[node name="Normal Tile41" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 96, 112 )
+
+[node name="Normal Tile42" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 128, 96 )
+
+[node name="Normal Tile35" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 320, 32 )
 
-[node name="Normal Tile26" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 352, 16 )
+[node name="Normal Tile44" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 288, 48 )
+
+[node name="Normal Tile36" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 352, 48 )
+
+[node name="Normal Tile37" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 384, 64 )
+
+[node name="Normal Tile39" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 288, 16 )
+
+[node name="Normal Tile46" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 256, 32 )
+
+[node name="Normal Tile43" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 448, 64 )
+
+[node name="Normal Tile47" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 416, 48 )
+
+[node name="Normal Tile48" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 384, 32 )
+
+[node name="Normal Tile38" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 416, 80 )
+
+[node name="Normal Tile45" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 384, 96 )
 
 [node name="Normal Tile30" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 384, 0 )
+position = Vector2( 128, 160 )
 
 [node name="Normal Tile27" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 320, 64 )
 
-[node name="Normal Tile28" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 352, 48 )
-
 [node name="Normal Tile29" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 384, 32 )
+position = Vector2( 160, 144 )
 
 [node name="Normal Tile20" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 192, 96 )
@@ -286,7 +334,7 @@ position = Vector2( 320, 96 )
 position = Vector2( 384, 176 )
 
 [node name="Electric Gate" parent="YSort/Objects" instance=ExtResource( 12 )]
-position = Vector2( 224, 48 )
+position = Vector2( 192, 64 )
 
 [node name="Spikes" type="YSort" parent="YSort"]
 
@@ -302,6 +350,17 @@ state = 2
 position = Vector2( 320, 96 )
 state = 2
 
+[node name="Spikes5" parent="YSort/Spikes" instance=ExtResource( 13 )]
+position = Vector2( 96, 112 )
+state = 2
+
+[node name="Spikes7" parent="YSort/Spikes" instance=ExtResource( 13 )]
+position = Vector2( 96, 144 )
+state = 2
+
+[node name="Spikes9" parent="YSort/Spikes" instance=ExtResource( 13 )]
+position = Vector2( 64, 128 )
+
 [node name="Spikes10" parent="YSort/Spikes" instance=ExtResource( 13 )]
 position = Vector2( 256, 128 )
 state = 2
@@ -315,19 +374,19 @@ position = Vector2( 352, 112 )
 [node name="LR" type="YSort" parent="YSort"]
 
 [node name="LR" parent="YSort/LR" instance=ExtResource( 16 )]
-position = Vector2( 192, 96 )
+position = Vector2( 288, 80 )
 
 [node name="Gameplay HUD" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="UI_Player" type="AnimationPlayer" parent="Gameplay HUD"]
-anims/Glitch = SubResource( 5 )
-anims/LevelIntro = SubResource( 1 )
-anims/LevelOutro = SubResource( 2 )
+anims/Glitch = SubResource( 1 )
+anims/LevelIntro = SubResource( 2 )
+anims/LevelOutro = SubResource( 3 )
 
 [node name="Glitch" type="TextureRect" parent="Gameplay HUD"]
 modulate = Color( 1, 1, 1, 0 )
-material = SubResource( 3 )
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
@@ -368,7 +427,7 @@ margin_left = 44.0
 margin_top = 7.0
 margin_right = 73.0
 margin_bottom = 27.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.584314, 0.690196, 1, 1 )
 text = ": 0"
 align = 1
@@ -383,7 +442,7 @@ margin_top = 4.56712
 margin_right = 607.291
 margin_bottom = 24.5671
 grow_horizontal = 2
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 0.741176, 0.584314, 1 )
 text = "Level Title"
 align = 1

@@ -17,15 +17,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "WhiteScreenFX",
-"speed": 24.0
-}, {
 "frames": [ ExtResource( 14 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 10 ) ],
 "loop": false,
 "name": "BlackScreenFX",
 "speed": 18.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "WhiteScreenFX",
+"speed": 24.0
 } ]
 
 [node name="MultiCam" type="Camera2D"]

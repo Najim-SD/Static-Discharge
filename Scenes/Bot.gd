@@ -111,7 +111,7 @@ func moveBot(dir):
 					$RayCast2D.force_raycast_update()
 					var nc:Area2D = $RayCast2D.get_collider()
 					$RayCast2D.position = or_pos
-					if nc != null:
+					if nc != null and nc.is_in_group("Tiles") and not nc.get_parent().occupied:
 						obj.move(dir)
 					else:
 						BotError()

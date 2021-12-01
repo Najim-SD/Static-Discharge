@@ -9,6 +9,7 @@ var Bot_Ref
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$CamPlayer.play("ZoomOut")
 	UI_Ref = $"Gameplay HUD"
 	Bot_Ref = $YSort/Objects/Bot
 	UI_Ref.find_node("Title").text = "#" + levelNumber + " - " + levelName
