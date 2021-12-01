@@ -191,25 +191,25 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 23 ) ],
 "loop": false,
-"name": "Charging",
-"speed": 18.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "Charged",
-"speed": 5.0
+"name": "Discharging",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 28 ) ],
 "loop": true,
 "name": "Empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 23 ) ],
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "Charged",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 20 ) ],
 "loop": false,
-"name": "Discharging",
-"speed": 10.0
+"name": "Charging",
+"speed": 18.0
 } ]
 
 [sub_resource type="DynamicFont" id=8]

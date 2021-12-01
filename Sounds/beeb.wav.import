@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/beeb.wav-38d5b7bae1d135b86e1913b6ea5316f3.sample"
+
+[deps]
+
+source_file="res://Sounds/beeb.wav"
+dest_files=[ "res://.import/beeb.wav-38d5b7bae1d135b86e1913b6ea5316f3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
