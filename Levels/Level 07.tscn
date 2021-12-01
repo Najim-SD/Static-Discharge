@@ -197,7 +197,7 @@ font_data = ExtResource( 3 )
 script = ExtResource( 4 )
 levelName = "Fin"
 levelNumber = "07"
-nextLevelPath = "res://Levels/Level 00.tscn"
+nextLevelPath = "res://Levels/Main Menu.tscn"
 
 [node name="CamPlayer" type="AnimationPlayer" parent="."]
 anims/ZoomOut = SubResource( 1 )

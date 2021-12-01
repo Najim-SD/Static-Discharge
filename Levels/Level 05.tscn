@@ -282,9 +282,6 @@ position = Vector2( 384, 32 )
 [node name="Normal Tile38" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 416, 80 )
 
-[node name="Normal Tile45" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 384, 96 )
-
 [node name="Normal Tile30" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 128, 160 )
 

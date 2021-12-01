@@ -276,12 +276,6 @@ position = Vector2( 96, 16 )
 [node name="Normal Tile51" parent="YSort/Tiles" instance=ExtResource( 9 )]
 position = Vector2( 192, 0 )
 
-[node name="Normal Tile53" parent="YSort/Tiles" instance=ExtResource( 9 )]
-position = Vector2( 224, -16 )
-
-[node name="Normal Tile54" parent="YSort/Tiles" instance=ExtResource( 9 )]
-position = Vector2( 256, 0 )
-
 [node name="Normal Tile44" parent="YSort/Tiles" instance=ExtResource( 9 )]
 position = Vector2( 96, 48 )
 
@@ -323,6 +317,12 @@ position = Vector2( 32, 80 )
 
 [node name="Static Tile9" parent="YSort/Tiles" instance=ExtResource( 15 )]
 position = Vector2( 352, 112 )
+
+[node name="Static Tile18" parent="YSort/Tiles" instance=ExtResource( 15 )]
+position = Vector2( 224, -16 )
+
+[node name="Static Tile19" parent="YSort/Tiles" instance=ExtResource( 15 )]
+position = Vector2( 256, 0 )
 
 [node name="Static Tile17" parent="YSort/Tiles" instance=ExtResource( 15 )]
 position = Vector2( 192, 128 )
