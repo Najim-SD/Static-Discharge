@@ -29,7 +29,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 0.3, 1 ),
 "update": 0,
-"values": [ Vector2( 0.4, 0.4 ), Vector2( 0.9, 0.9 ) ]
+"values": [ Vector2( 0.4, 0.4 ), Vector2( 0.95, 0.95 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -212,7 +212,7 @@ drag_margin_bottom = 0.0
 targets = [ "Cam Target" ]
 
 [node name="Cam Target" type="Position2D" parent="."]
-position = Vector2( 256, 144 )
+position = Vector2( 256, 128 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 1 )
@@ -221,6 +221,10 @@ environment = ExtResource( 1 )
 position = Vector2( -64, 32 )
 
 [node name="Tiles" type="YSort" parent="YSort"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Goal Tile" parent="YSort/Tiles" instance=ExtResource( 12 )]
 position = Vector2( 160, 48 )
@@ -380,6 +384,10 @@ position = Vector2( 448, 64 )
 scale = Vector2( -1, 1 )
 
 [node name="Spikes" type="YSort" parent="YSort"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Spikes" parent="YSort/Spikes" instance=ExtResource( 15 )]
 position = Vector2( 288, 112 )
