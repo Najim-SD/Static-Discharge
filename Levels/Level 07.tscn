@@ -29,7 +29,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 0.3, 1 ),
 "update": 0,
-"values": [ Vector2( 0.4, 0.4 ), Vector2( 0.8, 0.8 ) ]
+"values": [ Vector2( 0.4, 0.4 ), Vector2( 0.9, 0.9 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -195,7 +195,7 @@ font_data = ExtResource( 3 )
 
 [node name="Level 07" type="Node2D"]
 script = ExtResource( 4 )
-levelName = "Security Measures"
+levelName = "Fin"
 levelNumber = "07"
 nextLevelPath = "res://Levels/Level 00.tscn"
 
@@ -203,7 +203,7 @@ nextLevelPath = "res://Levels/Level 00.tscn"
 anims/ZoomOut = SubResource( 1 )
 
 [node name="MultiCam" parent="." instance=ExtResource( 9 )]
-position = Vector2( 288, 224 )
+position = Vector2( 256, 224 )
 zoom = Vector2( 0.4, 0.4 )
 drag_margin_left = 0.0
 drag_margin_top = 0.0
@@ -212,7 +212,7 @@ drag_margin_bottom = 0.0
 targets = [ "Cam Target" ]
 
 [node name="Cam Target" type="Position2D" parent="."]
-position = Vector2( 288, 128 )
+position = Vector2( 256, 144 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 1 )
@@ -241,7 +241,7 @@ position = Vector2( 288, 80 )
 position = Vector2( 160, 112 )
 
 [node name="Normal Tile42" parent="YSort/Tiles" instance=ExtResource( 11 )]
-position = Vector2( 160, 80 )
+position = Vector2( 128, 96 )
 
 [node name="Normal Tile35" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 320, 32 )
@@ -254,6 +254,12 @@ position = Vector2( 512, 32 )
 
 [node name="Normal Tile54" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 544, 48 )
+
+[node name="Normal Tile58" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 512, -32 )
+
+[node name="Normal Tile60" parent="YSort/Tiles" instance=ExtResource( 11 )]
+position = Vector2( 448, 128 )
 
 [node name="Normal Tile57" parent="YSort/Tiles" instance=ExtResource( 11 )]
 position = Vector2( 416, 16 )
@@ -327,11 +333,20 @@ position = Vector2( 448, 96 )
 [node name="Static Tile20" parent="YSort/Tiles" instance=ExtResource( 16 )]
 position = Vector2( 416, 112 )
 
+[node name="Static Tile27" parent="YSort/Tiles" instance=ExtResource( 16 )]
+position = Vector2( 448, 160 )
+
+[node name="Static Tile29" parent="YSort/Tiles" instance=ExtResource( 16 )]
+position = Vector2( 480, 144 )
+
 [node name="Static Tile21" parent="YSort/Tiles" instance=ExtResource( 16 )]
 position = Vector2( 224, 144 )
 
 [node name="Static Tile22" parent="YSort/Tiles" instance=ExtResource( 16 )]
 position = Vector2( 192, 160 )
+
+[node name="Static Tile28" parent="YSort/Tiles" instance=ExtResource( 16 )]
+position = Vector2( 416, 176 )
 
 [node name="Static Tile23" parent="YSort/Tiles" instance=ExtResource( 16 )]
 position = Vector2( 256, 160 )
@@ -351,17 +366,20 @@ position = Vector2( 288, 112 )
 [node name="Objects" type="YSort" parent="YSort"]
 
 [node name="Bot" parent="YSort/Objects" instance=ExtResource( 13 )]
-position = Vector2( 384, 176 )
+position = Vector2( 224, 192 )
 
 [node name="Electric Gate" parent="YSort/Objects" instance=ExtResource( 10 )]
 position = Vector2( 192, 64 )
+
+[node name="Electric Gate3" parent="YSort/Objects" instance=ExtResource( 10 )]
+position = Vector2( 448, 160 )
+scale = Vector2( -1, 1 )
 
 [node name="Electric Gate2" parent="YSort/Objects" instance=ExtResource( 10 )]
 position = Vector2( 448, 64 )
 scale = Vector2( -1, 1 )
 
 [node name="Spikes" type="YSort" parent="YSort"]
-visible = false
 
 [node name="Spikes" parent="YSort/Spikes" instance=ExtResource( 15 )]
 position = Vector2( 288, 112 )
@@ -369,40 +387,85 @@ state = 1
 
 [node name="Spikes4" parent="YSort/Spikes" instance=ExtResource( 15 )]
 position = Vector2( 320, 128 )
-state = 2
 
 [node name="Spikes3" parent="YSort/Spikes" instance=ExtResource( 15 )]
-position = Vector2( 320, 96 )
-state = 2
+position = Vector2( 384, 160 )
+state = 1
 
 [node name="Spikes5" parent="YSort/Spikes" instance=ExtResource( 15 )]
-position = Vector2( 96, 112 )
+position = Vector2( 320, 32 )
 state = 2
 
-[node name="Spikes7" parent="YSort/Spikes" instance=ExtResource( 15 )]
-position = Vector2( 96, 144 )
+[node name="Spikes6" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 256, 64 )
+state = 2
+
+[node name="Spikes12" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 128, 128 )
+state = 2
+
+[node name="Spikes15" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 224, 144 )
+state = 2
+
+[node name="Spikes19" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 352, 80 )
+state = 2
+
+[node name="Spikes20" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 416, 80 )
+state = 2
+
+[node name="Spikes16" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 288, 176 )
+state = 2
+
+[node name="Spikes10" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 224, 80 )
+state = 1
+
+[node name="Spikes13" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 160, 112 )
+state = 1
+
+[node name="Spikes17" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 256, 160 )
+state = 1
+
+[node name="Spikes21" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 384, 64 )
+state = 1
+
+[node name="Spikes22" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 448, 96 )
+state = 1
+
+[node name="Spikes18" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 256, 192 )
+state = 1
+
+[node name="Spikes14" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 288, 48 )
+state = 1
+
+[node name="Spikes8" parent="YSort/Spikes" instance=ExtResource( 15 )]
+position = Vector2( 352, 144 )
 state = 2
 
 [node name="Spikes9" parent="YSort/Spikes" instance=ExtResource( 15 )]
-position = Vector2( 64, 128 )
-
-[node name="Spikes10" parent="YSort/Spikes" instance=ExtResource( 15 )]
-position = Vector2( 256, 128 )
+position = Vector2( 416, 176 )
 state = 2
 
-[node name="Spikes8" parent="YSort/Spikes" instance=ExtResource( 15 )]
-position = Vector2( 288, 144 )
-
 [node name="Spikes11" parent="YSort/Spikes" instance=ExtResource( 15 )]
-position = Vector2( 352, 112 )
+position = Vector2( 256, 96 )
 
 [node name="LR" type="YSort" parent="YSort"]
 
-[node name="LR" parent="YSort/LR" instance=ExtResource( 14 )]
-position = Vector2( 160, 80 )
-
 [node name="LR2" parent="YSort/LR" instance=ExtResource( 14 )]
-position = Vector2( 480, 48 )
+position = Vector2( 512, 32 )
+
+[node name="LR" parent="YSort/LR" instance=ExtResource( 14 )]
+position = Vector2( 128, 96 )
 
 [node name="Gameplay HUD" type="CanvasLayer" parent="."]
 layer = 2
@@ -492,6 +555,6 @@ __meta__ = {
 [connection signal="CamFX" from="YSort/Objects/Bot" to="." method="_on_Bot_CamFX"]
 [connection signal="reachedGoal" from="YSort/Objects/Bot" to="." method="_on_Bot_reachedGoal"]
 [connection signal="step" from="YSort/Objects/Bot" to="." method="_on_Bot_step"]
-[connection signal="camfx2" from="YSort/LR/LR" to="." method="_on_LR_camfx2"]
 [connection signal="camfx2" from="YSort/LR/LR2" to="." method="_on_LR_camfx2"]
+[connection signal="camfx2" from="YSort/LR/LR" to="." method="_on_LR_camfx2"]
 [connection signal="animation_finished" from="Gameplay HUD/UI_Player" to="." method="_on_UI_Player_animation_finished"]
